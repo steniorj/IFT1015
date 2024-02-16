@@ -1,14 +1,63 @@
-for n in range(100, 1000):
-    next_Number = n // 10
-    sum = 0
-    original_Number = n
-    while next_Number > 0:
-        last_Digit = n % 10
-        sum += (last_Digit**3)
-        next_Number = n // 10
-        n = next_Number
-    if original_Number == sum:
-        print(original_Number, 'is an Armstrong number')
+def funcao_fdp(annee):
 
+    g = annee % 19
+    # print(g)
+    c = annee // 100
+    # print(c)
+    d = c-c//4
+    # print(d)
+    e = (8 * c + 13) // 25
+    # print(e)
+    i = (19 * g + 15) % 30
+    # print(i)
+    h = (d-e+19*g+15) % 30
+    # print(h)
+    k = h // 28
+    # print(k)
+    p = 29 // (h+1)
+    # print(p)
+    q = (21 - g) // 11
+    # print(q)
+    i = h - k * (1 - k * p * q)
+    # print(i)
+    j = (annee + annee // 4 + i + 2 - d) %7
+    # print(j)
+    r = 28+i-j
+    return r
 
+# print(funcao_fdp(2018))
+# for i in range(2000, 2100):
+#     print(i,funcao_fdp(i))
 
+def teste_fonction_fdp():
+
+    #1 cas général:
+    assert funcao_fdp(2024) == 31
+    #2 la date la plus tôt possible : le 22 mars
+    assert funcao_fdp(1818) == 22
+    #3 la date la plus tard possible : le 25 avril
+    assert funcao_fdp(1943) == 56
+    #4 vérification si la correction pour les années bissextiles est correcte:
+    assert funcao_fdp(1900) == 46
+    #5 vérifier si le nombre d'Or a été calculé pour un cycle ménotique de 19 ans
+    assert funcao_fdp(2013) == 31 and funcao_fdp(2014) == 51
+
+teste_fonction_fdp()
+
+# print (2024/19, 2024%19, 2024//19)
+
+#
+# print(r)
+#
+# print(type(14/02/2024))
+#
+
+#teste do assert
+# def teste(n):
+#     return n*n
+#
+# def test_teste():
+#     assert teste(0) == 0
+#     assert teste(-3) == 9
+#
+# test_teste()
