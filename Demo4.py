@@ -1,11 +1,11 @@
-import random
-# # Exercice 1
-# # Nous voulons compter le nombre de fois qu’il faut tirer à pile-ou-face pour que 5000 des tirs aient donné
-# # pile. En principe le nombre de tirs devrait être proche de 10000 si random() est aléatoire.
-# # Codez un programme qui effectue cette simulation dans un premier temps avec une seule boucle «tantque» et
-# # ensuite avec une boucle «tant-que» imbriquée dans une boucle «for».
-# # Notez que pour tirer à pileou-face on peut se servir du test random() < 0.5 . Un résultat True signifie “pile”, et un
-# # résultat False signifie “face”.
+import math
+# Exercice 1
+# Nous voulons compter le nombre de fois qu’il faut tirer à pile-ou-face pour que 5000 des tirs aient donné
+# pile. En principe le nombre de tirs devrait être proche de 10000 si random() est aléatoire.
+# Codez un programme qui effectue cette simulation dans un premier temps avec une seule boucle «tantque» et
+# ensuite avec une boucle «tant-que» imbriquée dans une boucle «for».
+# Notez que pour tirer à pileou-face on peut se servir du test random() < 0.5 . Un résultat True signifie “pile”, et un
+# résultat False signifie “face”.
 #
 # for i in range(0,2):
 #     repeter = True
@@ -72,19 +72,23 @@ import random
 # somme = 0
 # repeter = True
 # num = 0
+# count = 0
 # while repeter:
 #     num += 1
 #     nombre = int(input('Digite o numero positivo #' + str(num)))
 #     if nombre == 0:
 #         break
-#     count = 0
+#
 #     if count == 0:
 #         min = nombre
 #         count =1
+#
 #     if nombre < min:
 #         min = nombre
+#
 #     elif nombre > max:
 #         max = nombre
+#
 #     if nombre > 0:
 #         somme += int(nombre)
 #
@@ -92,8 +96,11 @@ import random
 # print(somme, moyenne)
 # print('min = ', min, 'max =', max)
 
-# Codez un programme qui, étant donné une variable n contenant un entier positif, va imprimer tous ses
-# facteurs (les entiers >= 2 qui divisent exactement n).
+"""
+Exercice 6
+Codez un programme qui, étant donné une variable n contenant un entier positif, va imprimer tous ses
+facteurs (les entiers >= 2 qui divisent exactement n).
+"""
 #
 # n = int(input('Digite um numero'))
 #
@@ -104,46 +111,37 @@ import random
 # while i <= 31:
 #     print(i)
 #     i += 1 + (i>2) + 2*(i%6==1) + 4*(i==23)
-#
+
 # Exercice 1
 # Concevez une abstraction procédurale pour un lancer aléatoire de pièce de monnaie. Quelle est la tâche
 # de cette abstraction procédurale? Quels sont les paramètres formels? Quel est le type du résultat? Codez
 # votre abstraction procédurale comme une déclaration de fonction.
 
-import random
+from random import *
+from math import *
 
-# def lancee_monnaie(n):
-#     #n = numero de lançamentos
-#     for i in range(0, n):
-#         lancee = random.random()
-#         if lancee <= 0.5:
-#             print('pile')
-#         else:
-#             print('face')
-# lancee_monnaie(3)
-
-
+# def lancee_monnaie():
+#     return random() < 0.5
+# print(lancee_monnaie())
 
 # Exercice 2
 # Concevez une abstraction procédurale pour un lancer de dé à six faces. Quelle est la tâche de cette
 # abstraction procédurale? Quels sont les paramètres formels? Quel est le type du résultat? Codez votre
 # abstraction procédurale comme une déclaration de fonction.
 
-def lancement_d6(n):
-    #n = nombre de lancements
-    for i in range(0,n):
-        lancee = int(random.random()*10) +1
-        print(lancee)
-
-lancement_d6(3)
+# def lanca_d6():
+#     return math.floor(6*random())+1
+# print(lanca_d6())
 
 # Exercice 3
 # Concevez une abstraction procédurale pour un événement aléatoire discret pour lequel il y a N résultats
 # possibles qui ont la même probabilité. Quelle est la tâche de cette abstraction procédurale? Quels sont les
 # paramètres formels? Quel est le type de résultat? Codez votre abstraction procédurale comme une
 # déclaration de fonction nommée evenementAleatoire.
-
-
+#
+# def evenementAleatoire(n):
+#     return math.floor(n*random())+1
+# print(evenementAleatoire(20))
 
 # Exercice 4
 # Concevez et codez la fonction lancerNDes qui simule le lancer de N dés à six faces où on s’intéresse à
@@ -151,13 +149,31 @@ lancement_d6(3)
 # dés à six faces. Est-ce que la définition suivante est équivalente?
 # def lancer2Des():
 # return evenementAleatoire(11) + 2
+#
+# def evenementAleatoire(n):
+#     return math.floor(n*random())+1
+#
+# def lancerNDes(n):
+#     somme = 0
+#     for i in range(0,n):
+#         somme += evenementAleatoire(6)
+#     return somme
+# print(lancerNDes(2))
 
 
 # Exercice 5
 # Utilisez la fonction evenementAleatoire pour coder à nouveau les deux premiers exercices et aussi
 # une abstraction procédurale qui simule un lancer au jeu de roulette (37 résultats possibles, 1 à 36 et le 0).
 
-
+def evenementAleatoire(n):
+     return math.floor(n*random())+1
+def lancer_monnaie():
+    return evenementAleatoire(2)
+def lancer_d6():
+    return evenementAleatoire(6)
+def lancer_roulette():
+    return evenementAleatoire(37)
+print(lancer_roulette())
 
 # Exercice 6
 # À la séance de démonstration #2, on a donné la formule pour calculer le jour de la semaine à partir de la
@@ -167,7 +183,7 @@ lancement_d6(3)
 # à-pas. Introduisez une erreur dans la fonction jourDeLaSemaine pour voir ce qui se passe. Introduisez une
 # erreur dans la fonction testJourDeLaSemaine pour voir ce qui se passe.
 
-
+#vtc
 
 # Exercice 7
 # Concevez une abstraction procédurale pour la conversion d’une température Celsius à Fahrenheit et une

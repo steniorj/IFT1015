@@ -1,7 +1,7 @@
 def funcao_fdp(annee):
 
     g = annee % 19
-    # print(g)
+    print(g)
     c = annee // 100
     # print(c)
     d = c-c//4
@@ -24,40 +24,41 @@ def funcao_fdp(annee):
     # print(j)
     r = 28+i-j
     return r
+print(funcao_fdp(1956), funcao_fdp(1957))
 
-# print(funcao_fdp(2018))
-# for i in range(2000, 2100):
-#     print(i,funcao_fdp(i))
-
-def teste_fonction_fdp():
-
-    #1 cas général:
-    assert funcao_fdp(2024) == 31
-    #2 la date la plus tôt possible : le 22 mars
-    assert funcao_fdp(1818) == 22
-    #3 la date la plus tard possible : le 25 avril
-    assert funcao_fdp(1943) == 56
-    #4 vérification si la correction pour les années bissextiles est correcte:
-    assert funcao_fdp(1900) == 46
-    #5 vérifier si le nombre d'Or a été calculé pour un cycle ménotique de 19 ans
-    assert funcao_fdp(2013) == 31 and funcao_fdp(2014) == 51
-
-teste_fonction_fdp()
-
-# print (2024/19, 2024%19, 2024//19)
-
+# # print(funcao_fdp(2018))
+# # for i in range(2000, 2100):
+# #     print(i,funcao_fdp(i))
 #
-# print(r)
+# def teste_fonction_fdp():
 #
-# print(type(14/02/2024))
+#     #1 cas général:
+#     assert funcao_fdp(2024) == 31
+#     #2 la date la plus tôt possible : le 22 mars
+#     assert funcao_fdp(1818) == 22
+#     #3 la date la plus tard possible : le 25 avril
+#     assert funcao_fdp(1943) == 56
+#     #4 vérification si la correction pour les années bissextiles est correcte:
+#     assert funcao_fdp(1900) == 46
+#     #5 vérifier si le nombre d'Or a été calculé pour un cycle ménotique de 19 ans
+#     assert funcao_fdp(2013) == 31 and funcao_fdp(2014) == 51
 #
-
-#teste do assert
-# def teste(n):
-#     return n*n
+# teste_fonction_fdp()
 #
-# def test_teste():
-#     assert teste(0) == 0
-#     assert teste(-3) == 9
+# # print (2024/19, 2024%19, 2024//19)
 #
-# test_teste()
+# #
+# # print(r)
+# #
+# # print(type(14/02/2024))
+# #
+#
+# #teste do assert
+# # def teste(n):
+# #     return n*n
+# #
+# # def test_teste():
+# #     assert teste(0) == 0
+# #     assert teste(-3) == 9
+# #
+# # test_teste()
