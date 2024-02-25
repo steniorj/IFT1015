@@ -23,16 +23,16 @@
 
 # Q5: Quels sont des exemples d'utilisation:
 # Ex1: calculation_easter_date(2024) - calcule la date du dimanche de Pâques de l'année courrante
-# output: "31-03-2024"
+# output attendu: "31-03-2024"
 
 # Ex2: calculation_easter_date(1789) - calcule la date du dimanche de Pâques de l'année de la prise de la Bastille
-# output: "08-04-1789"
+# output attendu: "08-04-1789"
 
 
 ## Calcul, commentaires détaillés nécessaires seulement
 #Fonction avec le corps vide
 def calculation_easter_date(annee):
-
+    return
 
 ## tests unitaires:
 def test_calculation_easter_date():
