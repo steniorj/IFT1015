@@ -1,30 +1,29 @@
 def funcao_fdp(annee):
 
     g = annee % 19
-    print(g)
     c = annee // 100
-    # print(c)
     d = c-c//4
-    # print(d)
     e = (8 * c + 13) // 25
-    # print(e)
     i = (19 * g + 15) % 30
-    # print(i)
     h = (d-e+19*g+15) % 30
-    # print(h)
     k = h // 28
-    # print(k)
     p = 29 // (h+1)
-    # print(p)
     q = (21 - g) // 11
-    # print(q)
     i = h - k * (1 - k * p * q)
-    # print(i)
     j = (annee + annee // 4 + i + 2 - d) %7
-    # print(j)
     r = 28+i-j
-    return r
-print(funcao_fdp(1956), funcao_fdp(1957))
+    if r > 31 and r < 41:
+        return "0"+str(r-31) + '-04-'+str(annee)
+
+    elif r>= 41:
+        return str(r - 31) + '-04-' + str(annee)
+
+    else:
+        return str(r) + '-03-'+str(annee)
+
+
+
+print(funcao_fdp(1958))
 
 # # print(funcao_fdp(2018))
 # # for i in range(2000, 2100):
