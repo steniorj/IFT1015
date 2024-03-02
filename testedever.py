@@ -21,7 +21,7 @@ def funcao_fdp(annee):
     else:
         return str(r) + '-03-'+str(annee)
 
-
+"C" : "G"
 
 print(funcao_fdp(1958))
 
