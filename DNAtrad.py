@@ -336,14 +336,36 @@ def testTranscrire():
 """
 
 
-4.6 Procédure traduire(brinArn)
-Prend en paramètre un brin d’ARN (chaine de caractères) et affiche la protéine sous
-forme d’une chaine de caractères et la dessine à l’aide de la tortue.
+def traduire(brinArn):
+    # Prend en paramètre un brin d’ARN (chaine de caractères) et affiche la protéine sous
+    # forme d’une chaine de caractères et la dessine à l’aide de la tortue.
 
-4.7 Procédure carre(longueur, nombre)
-Prend deux entiers en paramètre (taille du côté du carré et l’indice du carré à dessiner) et
-trace un carré à l’aide de la tortue.
+    proteinString = ''
 
+    for i in range(0,len(brinArn),3):
+
+        if codons_aa[brinArn[i:i+3]] == "Stop":
+            pass
+        else:
+            proteinString += codons_aa[brinArn[i:i+3]] + '-'
+
+    print(proteinString.rstrip('-'))
+
+traduire("AUGCUUAUAUGAUAGUAA")
+
+def testTraduire():
+    #1 cas général pour les codons codants:
+    traduire("AUGCUU") == "Méthionine (Start)-Leucine"
+
+    #2 séquence avec les trois stop codons
+    traduire("AUGCUUAUAUGAUAGUAA") == "Méthionine (Start)-Leucine-Isoleucine"
+
+
+
+def carre(longueur, nombre):
+    # Prend deux entiers en paramètre (taille du côté du carré et l’indice du carré à dessiner) et
+    # trace un carré à l’aide de la tortue.
+    return
 
 
 
