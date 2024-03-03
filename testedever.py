@@ -1,63 +1,51 @@
-def funcao_fdp(annee):
 
-    g = annee % 19
-    c = annee // 100
-    d = c-c//4
-    e = (8 * c + 13) // 25
-    i = (19 * g + 15) % 30
-    h = (d-e+19*g+15) % 30
-    k = h // 28
-    p = 29 // (h+1)
-    q = (21 - g) // 11
-    i = h - k * (1 - k * p * q)
-    j = (annee + annee // 4 + i + 2 - d) %7
-    r = 28+i-j
-    if r > 31 and r < 41:
-        return "0"+str(r-31) + '-04-'+str(annee)
+def trouveGene(debut, fin):
+    # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
+    # autre tableau contenant les positions de tous les codons de terminaison pour un brin
+    # d’ADN et renvoie un tableau de tuples contenant la liste des gènes (début et fin) trouvés
+    # sur un brin.
+    # Ainsi, s’il y a trois gènes sur un brin, le tableau renvoyé ressemblera à :
+    # [ (debutGene1, finGene1) , (debutGene2, finGene2) ,
+    # (debutGene3, finGene3) ]
+    # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
+    # de trois nucléotides de debutGene.
 
-    elif r>= 41:
-        return str(r - 31) + '-04-' + str(annee)
+    listeDeGenes = [] # Garde les tuples avec les positions de début et fin d'un gène
+    genesTemp = [] # Garde temporairemente les positions de genes qui vont être convertis en tuple
+    stopAnterieur = 0 # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
+                      # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
+                      # transcription.
 
-    else:
-        return str(r) + '-03-'+str(annee)
+    for stop in fin: # Itération sur la liste des positions de stop codons
 
-"C" : "G"
+        for start in debut: # Itération sur la liste des positions de start codons
 
-print(funcao_fdp(1958))
+            if start > stopAnterieur and start < stop: # Vérif si la position de début d'un gène est entre deux stop codons
 
-# # print(funcao_fdp(2018))
-# # for i in range(2000, 2100):
-# #     print(i,funcao_fdp(i))
-#
-# def teste_fonction_fdp():
-#
-#     #1 cas général:
-#     assert funcao_fdp(2024) == 31
-#     #2 la date la plus tôt possible : le 22 mars
-#     assert funcao_fdp(1818) == 22
-#     #3 la date la plus tard possible : le 25 avril
-#     assert funcao_fdp(1943) == 56
-#     #4 vérification si la correction pour les années bissextiles est correcte:
-#     assert funcao_fdp(1900) == 46
-#     #5 vérifier si le nombre d'Or a été calculé pour un cycle ménotique de 19 ans
-#     assert funcao_fdp(2013) == 31 and funcao_fdp(2014) == 51
-#
-# teste_fonction_fdp()
-#
-# # print (2024/19, 2024%19, 2024//19)
-#
-# #
-# # print(r)
-# #
-# # print(type(14/02/2024))
-# #
-#
-# #teste do assert
-# # def teste(n):
-# #     return n*n
-# #
-# # def test_teste():
-# #     assert teste(0) == 0
-# #     assert teste(-3) == 9
-# #
-# # test_teste()
+                if (stop - start) % 3 == 0:  # Vérif si la fin du gène se situe à un multiple de trois nucléotide du début
+
+                    # Construction d'un tableau avec une position de start et une position de stop d'un gene
+                    genesTemp.append(start)
+                    genesTemp.append(stop)
+
+                    # Conversion du tableau en tuple
+                    listeDeGenes.append(tuple(genesTemp))
+
+                    # Réinitialisation du tableau pour une nouvelle conversion en tuples
+                    genesTemp = []
+
+        stopAnterieur = stop
+
+    return listeDeGenes
+
+print(trouveGene([1, 5, 9], [ 11 ]))
+
+def testTrouveGene():
+    #1 un gène avec un start codon et un stop codon:
+    assert trouveGene([1],[4]) == [(1,4)]
+
+    #2 deux gènes avec le même stop codon:
+    assert trouveGene([1,4], [7]) == [(1,7), (4,7)]
+
+    #3 un gène entre deux stop codons:
+    assert trouveGene([5], [2, 11]) == [(5,11)]
