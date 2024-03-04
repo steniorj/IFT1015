@@ -332,7 +332,6 @@ def testTranscrire():
     assert transcrire("AAATTTCCCGGG") == "UUUAAAGGGCCC"
 
 
-
 def traduire(brinArn):
     # Prend en paramètre un brin d’ARN (chaine de caractères) et affiche la protéine sous
     # forme d’une chaine de caractères et la dessine à l’aide de la tortue.
@@ -348,8 +347,7 @@ def traduire(brinArn):
 
     print(proteinString.rstrip('-'))
 
-traduire("AUGCUUAUAUGAUAGUAA")
-
+traduire("AUG")
 def testTraduire():
     #1 cas général pour les codons codants:
     traduire("AUGCUU") == "Méthionine (Start)-Leucine"

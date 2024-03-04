@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d0f349b-cc9c-4525-ac30-db3f67b05a27" name="Changes" comment="">
+    <list default="true" id="9d0f349b-cc9c-4525-ac30-db3f67b05a27" name="Changes" comment="ASD">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNAtrad.py" beforeDir="false" afterPath="$PROJECT_DIR$/DNAtrad.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XYtartaruga.py" beforeDir="false" afterPath="$PROJECT_DIR$/XYtartaruga.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testedever.py" beforeDir="false" afterPath="$PROJECT_DIR$/testedever.py" afterDir="false" />
@@ -35,26 +36,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Devoir3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testedever.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/stn/Área de Trabalho&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.DNAtrad.executor": "Run",
+    "Python.Devoir3.executor": "Run",
+    "Python.testedever.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/stn/Área de Trabalho"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$/Área de Trabalho" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.testedever">
+  <component name="RunManager" selected="Python.DNAtrad">
+    <configuration name="DNAtrad" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="IFT1015" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DNAtrad.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Devoir3" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -102,6 +126,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DNAtrad" />
         <item itemvalue="Python.testedever" />
       </list>
     </recent_temporary>
@@ -122,6 +147,19 @@
       <option name="presentableId" value="Default" />
       <updated>1707064815558</updated>
     </task>
+    <task id="LOCAL-00001" summary="ASD">
+      <option name="closed" value="true" />
+      <created>1709572402681</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709572402681</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ASD" />
+    <option name="LAST_COMMIT_MESSAGE" value="ASD" />
   </component>
 </project>
