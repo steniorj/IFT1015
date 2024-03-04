@@ -1,3 +1,7 @@
+"""
+AUTHOR: DA SILVA FARIA, STENNIO
+DATE: 2023/02/02"""
+
 adn = "TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
 GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
 CAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGAACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGA\
@@ -154,7 +158,6 @@ adnTranscriptionDictionnaire = {
     "G" : "C",
 }
 
-""" ### FUNCAO COMPLETA ###
 def antisens(brinAdn):
     # Part de brin ADN fourni et renvoie le brin d’ADN complémentaire.
     adnAntisens = ''
@@ -166,9 +169,7 @@ def antisens(brinAdn):
 def testAntisens():
     # 1 cas géneral:
     assert antisens("AAATTTCCCGGG") == "TTTAAAGGGCCC"
-"""
 
-""" ### FUNCAO COMPLETA ###
 
 def reverseComplement(brinAdn):
     # Inversion du brin complémentaire d'ADN pour qu'il soit affiché dans le sense 5' -> 3'
@@ -185,10 +186,6 @@ def testReverseComplement():
     #1 cas général:
     assert reverseComplement("AAATTTCCCGGG") == "GGGCCCTTTAAA"
     
-"""
-
-"""## FUNÇÃO COMPLETAMENTE PRONTA ##
-
 def trouveDebut(brinAdn):
     # Recherche tous les codons de départ sur un brin d’ADN et renvoie un tableau contenant
     # les positions du premier nucléotide de chacun des codons. Ainsi si TAC se trouve aux
@@ -266,10 +263,10 @@ def testTrouveFin():
 
 testTrouveFin()
 
-"""
 
 
-"""
+
+
 def trouveGene(debut, fin):
     # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
     # autre tableau contenant les positions de tous les codons de terminaison pour un brin
@@ -318,9 +315,9 @@ def testTrouveGene():
 
     #3 un gène entre deux stop codons:
     assert trouveGene([5], [2, 11]) == [(5,11)]
-"""
 
-""" ### COMPLETA 
+
+
 def transcrire(brinAdn):
     # Prend en paramètre la sous-chaine de caractère du brin d’ADN débutant au début du gène
     # et se terminant à la fin du gène et renvoie le brin d’ARN correspondant sous forme d’une
@@ -333,7 +330,7 @@ def transcrire(brinAdn):
 def testTranscrire():
     #1 cas géneral:
     assert transcrire("AAATTTCCCGGG") == "UUUAAAGGGCCC"
-"""
+
 
 
 def traduire(brinArn):

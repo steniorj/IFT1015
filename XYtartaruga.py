@@ -1,6 +1,3 @@
-roerewur
-
-
 def positionner(x, y):
     pu()
     goto(0, 0)
