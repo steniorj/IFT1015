@@ -150,7 +150,7 @@ lettreAa = {
     "GGG": "G"
 }
 
-# Utilisé pour la construction du brin d'ADN complementaire dans la fonction "antisens"
+# Dictionnaire pour la construction du brin d'ADN complementaire dans la fonction "antisens(brinAdn)"
 adnAppariement = {
     "A": "T",
     "T": "A",
@@ -158,7 +158,7 @@ adnAppariement = {
     "G": "C"
 }
 
-# Utilisé pour faire la conversion d'ADN en ARN dans la fonction "transcrire"
+# Dictionnaire pour faire la conversion d'ADN en ARN dans la fonction "transcrire(brinAdn)"
 adnTranscriptionDictionnaire = {
     "A": "U",
     "T": "A",
@@ -167,17 +167,13 @@ adnTranscriptionDictionnaire = {
 }
 
 
-## <- indique le début d'un pair fonction et son test respectif
+## <- indique le début d'un pair fonction/test
 def antisens(brinAdn):
     # Part de brin ADN fourni et renvoie le brin d’ADN complémentaire.
     adnAntisens = ''
     for i in brinAdn:
         adnAntisens += adnAppariement[i]
     return adnAntisens
-
-
-dnac = antisens(adn)
-
 
 def testAntisens():
     # 1 cas géneral:
@@ -302,7 +298,7 @@ def trouveGene(debut, fin):
                         # # Réinitialisation du tableau pour une nouvelle conversion en tuples
                         genesTemp = []
                         print(listeDeGenes)
-        stopAnterieur = stopPos
+        stopAnterieur = stopPos # Permettre que la recherche du prochain start codon soit faite après le dernier stop codon
 
     return listeDeGenes
 
@@ -327,7 +323,6 @@ def transcrire(brinAdn):
         arnTranscrit += adnTranscriptionDictionnaire[i]
     return arnTranscrit
 
-
 def testTranscrire():
     # 1 cas géneral:
     assert transcrire("AAATTTCCCGGG") == "UUUAAAGGGCCC"
@@ -349,7 +344,6 @@ def positionner(x, y):
     rt(90)
     fd(x)
     pd()
-
 
 def testPositionner():
     # 1 Doit mettre la tortue au centre du tableau. Par limitation de codeBoot,
@@ -376,9 +370,8 @@ def carre(longeur, nombre):
     fd(longeur / 2)
     pd()
 
-
 def carreTest():
-    # 1 Doit dessineru un carré a partir du centre du tableau. Par limitation de codeBoot,
+    # 1 Doit dessiner un carré a partir du centre du tableau. Par limitation de codeBoot,
     # il n'est pas possible définir un test avec la fonction assert.
     carre(20, 0)
 
@@ -427,7 +420,6 @@ def dessinerLettre(lettre):
             lt(1)
             fd(5 * 3.14 / 180)
         fd(5)
-        ht()
 
     if lettre == "D":
         pu()
@@ -540,7 +532,6 @@ def dessinerLettre(lettre):
         bk(5)
         pd()
         fd(10)
-        ht()
 
     if lettre == "J":
         pu()
@@ -561,7 +552,6 @@ def dessinerLettre(lettre):
         for _ in range(90):
             rt(1)
             fd(4 * 3.14 / 180)
-        ht()
 
     if lettre == "K":
         pu()
@@ -594,8 +584,6 @@ def dessinerLettre(lettre):
         fd(12)
         lt(90)
         fd(6)
-
-        ht()
 
     if lettre == "M":
         pu()
@@ -636,8 +624,6 @@ def dessinerLettre(lettre):
         for _ in range(360):
             lt(1)
             fd(5 * 3.14 / 180)
-
-        ht()
 
     if lettre == "P":
         pu()
@@ -688,7 +674,6 @@ def dessinerLettre(lettre):
             rt(1)
             fd(4 * 3.14 / 180)
         rt(180)
-
         rt(45)
         fd(8)
         pu()
@@ -745,7 +730,6 @@ def dessinerLettre(lettre):
             fd(4 * 3.14 / 180)
 
         fd(9)
-        ht()
 
     if lettre == "V":
         pu()
@@ -817,7 +801,6 @@ def dessinerLettre(lettre):
         rt(45)
         fd(10)
 
-
 def testDessinerLettre():
     # 1 Doit dessiner la lettre "A" au centre du tableau. Par limitation de codeBoot,
     # il n'est pas possible définir un test avec la fonction assert.
@@ -834,38 +817,36 @@ def dessinerSeq(sequence):
 
     # Conversion de la séquence d'ARN en séquence de lettres correspondant à acides aminés
     for j in range(0, len(sequence), 3):
-        if sequence[j:j + 3] == "UAA" or sequence[j:j + 3] == "UAG" or sequence[
-                                                                       j:j + 3] == "UGA":  # Élimination d'affichage des stop codons
+        if sequence[j:j + 3] == "UAA" or sequence[j:j + 3] == "UAG" or sequence[j:j + 3] == "UGA":  # Élimination d'affichage des stop codons
             pass
         else:
             sequenceAAcides += lettreAa[sequence[j:j + 3]]
 
     # Dessin des carrés avec lettres
     for i in sequenceAAcides:
-        positionner(-180, 120)
-        if i == "*":
+        positionner(-180, 120) # Positionner la tortue au coin supérieur gauche
+        if i == "*": # Ignorer les stop codons
             pass
         else:
-            # décalage vers la bonne ligne
+            # Décalage de la tortue vers la bonne ligne
             pu()
             rt(90)
             fd(20 * lineCounter)
             lt(90)
             pd()
 
-            # affichache du carre
+            # Affichache du carre
             carre(20, columnCounter)
 
-            # affichage de la lettre
+            # Affichage de la lettre dans le carré
             dessinerLettre(i)
 
-            columnCounter += 1
+            columnCounter += 1 # Passer à la prochaine colonne
 
             # limitation de 15 carrés par ligne
             if columnCounter > 14:
                 columnCounter = 0
                 lineCounter += 1
-
 
 def testDessinerSeq():
     # 1 Doit dessiner un carré avec la lettre "M"
@@ -892,7 +873,7 @@ def traduire(brinArn):
     # Affichage de la proteine sous forme de chaine de caractères
     for i in range(0, len(brinArn), 3):
 
-        if codons_aa[brinArn[i:i + 3]] == "Stop":
+        if codons_aa[brinArn[i:i + 3]] == "Stop": # Empêcher l'affichage des stop codons
             pass
         else:
             proteinString += codons_aa[brinArn[i:i + 3]] + '-'
@@ -900,153 +881,4 @@ def traduire(brinArn):
     print(proteinString.rstrip('-'))
 
     # Affichage de la proteine sous forme de dessin
-
     dessinerSeq(brinArn)
-
-
-# traduire("UUUUUCUUAUUGCUUCUCCUACUGAUUAUCAUAAUGGUUGUCGUAGUGUCUUCCUCAUCGCCUCCCCCACCGACUACCACAACGGCUGCCGCAGCGUAUUACUAAUAGCAUCACCAACAGAAUAACAAAAAGGAUGACGAAGAGUGUUGCUGAUGGCGUCGCCGACGGAGUAGCAGAAGGGGUGGCGGAGGG")
-# st()
-# dessinerSeq("GCCUGUGACGAGUUUGGAUAU")
-
-
-def trouveDebut(brinAdn):
-    # Recherche tous les codons de départ sur un brin d’ADN et renvoie un tableau contenant
-    # les positions du premier nucléotide de chacun des codons. Ainsi si TAC se trouve aux
-    # positions 3, 67 et 89 (ces trois valeurs étant les positions du T de TAC) il renverra le
-    # tableau suivant : [ 3 , 67 , 89 ] .
-
-    resultat = []  # Garde les positions du premier nucléotide d'un start codon
-    i = 0
-    resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
-
-    while i <= len(brinAdn) - len("TAC"):
-        if "TAC" == brinAdn[i:i + len("TAC")]:
-            resultat.append(i)
-        i += 1
-
-    # Début d'assemblage du tableau special
-    if 3 in resultat:
-        resultatSpecial.append(3)
-
-    if 67 in resultat:
-        resultatSpecial.append(67)
-
-    if 89 in resultat:
-        resultatSpecial.append(89)
-
-    if resultatSpecial == [3, 67, 89]:  # Output du tableau spécial
-        return resultatSpecial
-
-    else:  # Output des tableaux ordinaires
-        return resultat
-
-
-def trouveFin(brinAdn):
-    # Même chose que la fonction précédente mais renvoie un tableau avec les positions de
-    # tous les codons de terminaison (attention, il y a trois possibilités de codons de
-    # terminaison).
-
-    resultat = []  # Garde les positions du premier nucléotide d'un stop codon
-    i = 0
-    resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
-
-    while i <= len(brinAdn) - len("ATT"):
-        if ("ATT" == brinAdn[i:i + len("ATT")]
-                or "ATC" == brinAdn[i:i + len("ATC")]
-                or "ACT" == brinAdn[i:i + len("ACT")]):
-            resultat.append(i)
-        i += 1
-
-    return resultat
-
-
-print(trouveFin("TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
-GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
-CAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGAACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGA\
-ACTCGACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCATCCCAGCGATACCC\
-AGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAG\
-CCAGCGAACTCGTCTGCGTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGC\
-GATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGTATGCCAGCC\
-AGCATCCCAGCGA"))
-
-
-def trouveGene(debut, fin):
-    # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
-    # autre tableau contenant les positions de tous les codons de terminaison pour un brin
-    # d’ADN et renvoie un tableau de tuples contenant la liste des gènes (début et fin) trouvés
-    # sur un brin.
-    # Ainsi, s’il y a trois gènes sur un brin, le tableau renvoyé ressemblera à :
-    # [ (debutGene1, finGene1) , (debutGene2, finGene2) ,
-    # (debutGene3, finGene3) ]
-    # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
-    # de trois nucléotides de debutGene.
-
-    listeDeGenes = []  # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = []  # Garde temporairemente les positions de genes qui vont être convertis en tuple
-    stopAnterieur = 0  # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-    # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
-    # transcription.
-
-    for stop in fin:  # Itération sur la liste des positions de stop codons
-
-        for start in debut:  # Itération sur la liste des positions de start codons
-
-            if start > stopAnterieur and start < stop:  # Vérif si la position de début d'un gène est entre deux stop codons
-
-                if (
-                        stop - start) % 3 == 0:  # Vérif si la fin du gène se situe à un multiple de trois nucléotide du début
-
-                    # Construction d'un tableau avec une position de start et une position de stop d'un gene
-                    genesTemp.append(start)
-                    genesTemp.append(stop)
-
-                    # Conversion du tableau en tuple
-                    listeDeGenes.append(tuple(genesTemp))
-
-                    # Réinitialisation du tableau pour une nouvelle conversion en tuples
-                    genesTemp = []
-
-        stopAnterieur = stop
-
-    return listeDeGenes
-
-
-# debut [38, 74, 402] OK verificado
-# fin [3, 9, 154, 160, 226, 249, 283, 304, 311, 343, 379, 392, 437, 460, 466, 494, 517, 556, 592, 614, 650, 673, 679, 720] OK verificado
-
-# os genes tem que ser [38,154], [74,154], [402,437]
-
-
-def trouveGene(debut, fin):
-    # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
-    # autre tableau contenant les positions de tous les codons de terminaison pour un brin
-    # d’ADN et renvoie un tableau de tuples contenant la liste des gènes (début et fin) trouvés
-    # sur un brin.
-    # Ainsi, s’il y a trois gènes sur un brin, le tableau renvoyé ressemblera à :
-    # [ (debutGene1, finGene1) , (debutGene2, finGene2) ,
-    # (debutGene3, finGene3) ]
-    # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
-    # de trois nucléotides de debutGene.
-
-    listeDeGenes = []  # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = []  # Garde temporairemente les positions de genes qui vont être convertis en tuple
-    stopAnterieur = 0  # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-    # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
-    # transcription.
-    geneStart = 0
-    for stopPos in fin:  # Itération sur la liste des positions de stop codons
-        for startPos in debut:
-            if startPos < stopPos and startPos >= geneStart:
-                print(stopPos, startPos)
-            else:
-                pass
-            geneStart = stopPos
-            print(geneStart)
-
-    return listeDeGenes
-
-
-print(trouveGene([1, 2, 3, 4, 5], [4, 6]))
-
-
-
