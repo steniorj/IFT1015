@@ -265,10 +265,7 @@ def testTrouveFin():
 
 testTrouveFin()
 
-
-
-
-
+##
 def trouveGene(debut, fin):
     # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
     # autre tableau contenant les positions de tous les codons de terminaison pour un brin
@@ -280,33 +277,32 @@ def trouveGene(debut, fin):
     # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
     # de trois nucléotides de debutGene.
 
-    listeDeGenes = [] # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = [] # Garde temporairemente les positions de genes qui vont être convertis en tuple
-    stopAnterieur = 0 # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-                      # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
-                      # transcription.
+    listeDeGenes = []  # Garde les tuples avec les positions de début et fin d'un gène
+    genesTemp = []  # Garde temporairemente les positions de genes qui vont être convertis en tuple
+    stopAnterieur = 0  # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
+    # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
+    # transcription.
 
-    for stop in fin: # Itération sur la liste des positions de stop codons
+    for stopPos in fin:
+        for startPos in debut:
+            if startPos < stopPos:
+                if stopAnterieur < startPos:  # Vérif. si le start codon analysé est après le dernier stop codon
+                    if (stopPos - startPos) % 3 == 0:  # Vérif. si les positions de fin et début sont multiples de 3
 
-        for start in debut: # Itération sur la liste des positions de start codons
+                        genesTemp.append(startPos)
+                        genesTemp.append(stopPos)
 
-            if start > stopAnterieur and start < stop: # Vérif si la position de début d'un gène est entre deux stop codons
+                        # Conversion en tuple
+                        listeDeGenes.append(tuple(genesTemp))
 
-                if (stop - start) % 3 == 0:  # Vérif si la fin du gène se situe à un multiple de trois nucléotide du début
+                        # # Réinitialisation du tableau pour une nouvelle conversion en tuples
+                        genesTemp = []
 
-                    # Construction d'un tableau avec une position de start et une position de stop d'un gene
-                    genesTemp.append(start)
-                    genesTemp.append(stop)
-
-                    # Conversion du tableau en tuple
-                    listeDeGenes.append(tuple(genesTemp))
-
-                    # Réinitialisation du tableau pour une nouvelle conversion en tuples
-                    genesTemp = []
-
-        stopAnterieur = stop
+        stopAnterieur = stopPos
 
     return listeDeGenes
+
+print(trouveGene([10, 161, 393, 467, 680, 721], [227, 284, 344, 380, 438, 495, 557, 593, 615, 651]))
 
 def testTrouveGene():
     #1 un gène avec un start codon et un stop codon:
@@ -318,8 +314,7 @@ def testTrouveGene():
     #3 un gène entre deux stop codons:
     assert trouveGene([5], [2, 11]) == [(5,11)]
 
-
-
+##
 def transcrire(brinAdn):
     # Prend en paramètre la sous-chaine de caractère du brin d’ADN débutant au début du gène
     # et se terminant à la fin du gène et renvoie le brin d’ARN correspondant sous forme d’une

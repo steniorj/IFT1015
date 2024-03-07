@@ -1,6 +1,158 @@
-#"ATT, ATC, ACT" - stop codons
 
-"TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
+codons_aa = {
+    "UUU": "Phénylalanine",
+    "UUC": "Phénylalanine",
+    "UUA": "Leucine",
+    "UUG": "Leucine",
+    "CUU": "Leucine",
+    "CUC": "Leucine",
+    "CUA": "Leucine",
+    "CUG": "Leucine",
+    "AUU": "Isoleucine",
+    "AUC": "Isoleucine",
+    "AUA": "Isoleucine",
+    "AUG": "Méthionine (Start)",
+    "GUU": "Valine",
+    "GUC": "Valine",
+    "GUA": "Valine",
+    "GUG": "Valine",
+    "UCU": "Sérine",
+    "UCC": "Sérine",
+    "UCA": "Sérine",
+    "UCG": "Sérine",
+    "CCU": "Proline",
+    "CCC": "Proline",
+    "CCA": "Proline",
+    "CCG": "Proline",
+    "ACU": "Thrénine",
+    "ACC": "Thrénine",
+    "ACA": "Thrénine",
+    "ACG": "Thrénine",
+    "GCU": "Alanine",
+    "GCC": "Alanine",
+    "GCA": "Alanine",
+    "GCG": "Alanine",
+    "UAU": "Tyrosine",
+    "UAC": "Tyrosine",
+    "UAA": "Stop",
+    "UAG": "Stop",
+    "CAU": "Histidine",
+    "CAC": "Histidine",
+    "CAA": "Glutamine",
+    "CAG": "Glutamine",
+    "AAU": "Asparagine",
+    "AAC": "Asparagine",
+    "AAA": "Lysine",
+    "AAG": "Lysine",
+    "GAU": "Aspartate",
+    "GAC": "Aspartate",
+    "GAA": "Glutamate",
+    "GAG": "Glutamate",
+    "UGU": "Cystéine",
+    "UGC": "Cystéine",
+    "UGA": "Stop",
+    "UGG": "Tryptophane",
+    "CGU": "Arginine",
+    "CGC": "Arginine",
+    "CGA": "Arginine",
+    "CGG": "Arginine",
+    "AGU": "Sérine",
+    "AGC": "Sérine",
+    "AGA": "Arginine",
+    "AGG": "Arginine",
+    "GGU": "Glycine",
+    "GGC": "Glycine",
+    "GGA": "Glycine",
+    "GGG": "Glycine"}
+
+lettreAa = {
+    "UUU": "F",
+    "UUC": "F",
+    "UUA": "L",
+    "UUG": "L",
+    "CUU": "L",
+    "CUC": "L",
+    "CUA": "L",
+    "CUG": "L",
+    "AUU": "I",
+    "AUC": "I",
+    "AUA": "I",
+    "AUG": "M",
+    "GUU": "V",
+    "GUC": "V",
+    "GUA": "V",
+    "GUG": "V",
+    "UCU": "S",
+    "UCC": "S",
+    "UCA": "S",
+    "UCG": "S",
+    "CCU": "P",
+    "CCC": "P",
+    "CCA": "P",
+    "CCG": "P",
+    "ACU": "T",
+    "ACC": "T",
+    "ACA": "T",
+    "ACG": "T",
+    "GCU": "A",
+    "GCC": "A",
+    "GCA": "A",
+    "GCG": "A",
+    "UAU": "Y",
+    "UAC": "Y",
+    "UAA": "*",
+    "UAG": "*",
+    "CAU": "H",
+    "CAC": "H",
+    "CAA": "Q",
+    "CAG": "Q",
+    "AAU": "N",
+    "AAC": "N",
+    "AAA": "K",
+    "AAG": "K",
+    "GAU": "D",
+    "GAC": "D",
+    "GAA": "E",
+    "GAG": "E",
+    "UGU": "C",
+    "UGC": "C",
+    "UGA": "*",
+    "UGG": "W",
+    "CGU": "R",
+    "CGC": "R",
+    "CGA": "R",
+    "CGG": "R",
+    "AGU": "S",
+    "AGC": "S",
+    "AGA": "R",
+    "AGG": "R",
+    "GGU": "G",
+    "GGC": "G",
+    "GGA": "G",
+    "GGG": "G"
+}
+
+# Utilisé pour la construction du brin d'ADN complementaire dans la fonction "antisens"
+adnAppariement = {
+    "A": "T",
+    "T": "A",
+    "C": "G",
+    "G": "C"
+}
+
+# Utilisé pour faire la conversion d'ADN en ARN dans la fonction "transcrire"
+adnTranscriptionDictionnaire = {
+    "A": "U",
+    "T": "A",
+    "C": "G",
+    "G": "C"
+}
+
+
+
+
+
+adn="TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
 GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
 CAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGAACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGA\
 ACTCGACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCATCCCAGCGATACCC\
@@ -10,18 +162,9 @@ GATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCG
 AGCATCCCAGCGA"
 
 """
-print(len('TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
-GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
-CAGCCAGCGAAGCCAGCCAGCCGATA'))
-"""
+Start:TAC
+STOP: ATT, ATC, ACT"""
 
-dnaReverseComplement = ("TCGCTGGGATGCTGGCTGGCATACGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCGCTGGCTGGCTGGCTGGCA\
-ATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCAATCGCTGGCTGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCAATCGGCTGGC\
-TGGCTTCGCTGGCTGTCGAACGCAGACGAGTTCGCTGGCTGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCGCTGGCTGGCTGGCT\
-GGCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGGTATCGCTGGGATGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCAATCGGCTGG\
-CTGGCTTCGCTGGCTGTCGAAGAGTGTCGAGTTCGCTGGCTGGCTGGCTGAATATCGGCTGGCTGGCTTCGCTGGCTGTCGAAGAGTGTTCGCTGGCTGGCTGGCTGAA\
-TATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCATTCGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCGCTGGCTGGCTGGCTGGCACTCGGCTGGCTGGCTTC\
-GCTGGCTGGCTGGCTGGCCGTCGCTGGCTGGCTGGCTGGGTATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGGTATCGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTCGA")
 def trouveDebut(brinAdn):
     # Recherche tous les codons de départ sur un brin d’ADN et renvoie un tableau contenant
     # les positions du premier nucléotide de chacun des codons. Ainsi si TAC se trouve aux
@@ -29,13 +172,11 @@ def trouveDebut(brinAdn):
     # tableau suivant : [ 3 , 67 , 89 ] .
 
     resultat = []  # Garde les positions du premier nucléotide d'un start codon
-    i = 0
     resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
 
-    while i <= len(brinAdn) - len("TAC"):
-        if "TAC" == brinAdn[i:i + len("TAC")]:
+    for i in range(0, len(brinAdn)):
+        if brinAdn[i:i + 3] == "TAC":
             resultat.append(i)
-        i += 1
 
     # Début d'assemblage du tableau special
     if 3 in resultat:
@@ -52,77 +193,139 @@ def trouveDebut(brinAdn):
 
     else:  # Output des tableaux ordinaires
         return resultat
+#
+# #Start na fita +:
+# print(len("TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAT"))
+#
+# print(len("TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAT"))
+#
+# print(len("TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
+# GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
+# CAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGAACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGA\
+# ACTCGACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCATCCCAGCGAT"))
+#
+
+startCodonPos = [38, 74, 402]
 
 
-def trouveFin(brinAdn):
-    # Même chose que la fonction précédente mais renvoie un tableau avec les positions de
-    # tous les codons de terminaison (attention, il y a trois possibilités de codons de
-    # terminaison).
-
-    resultat = []  # Garde les positions du premier nucléotide d'un stop codon
-    i = 0
-    resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
-
-    while i <= len(brinAdn) - len("ATT"):
-        if ("ATT" == brinAdn[i:i + len("ATT")]
-                or "ATC" == brinAdn[i:i + len("ATC")]
-                or "ACT" == brinAdn[i:i + len("ACT")]):
-            resultat.append(i)
-        i += 1
-
-    return resultat
-
-"""
-print(trouveFin("TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
+#testando funcoes stop codons
+adn="TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
 GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAATGCCAGCCAGC\
 CAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGAACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATATTCAGCCAGCCAGCCAGCGA\
 ACTCGACACTCTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCATCCCAGCGATACCC\
 AGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAG\
 CCAGCGAACTCGTCTGCGTTCGACAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGC\
 GATTGCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATTGCCAGCCAGCCAGCCAGCGAACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGTATGCCAGCC\
-AGCATCCCAGCGA"))
+AGCATCCCAGCGA"
+
 """
+Start:TAC
+STOP: ATT, ATC, ACT"""
 
-# debut [38, 74, 402] OK verificado
-# fin [3, 9, 154, 160, 226, 249, 283, 304, 311, 343, 379, 392, 437, 460, 466, 494, 517, 556, 592, 614, 650, 673, 679, 720] OK verificado
+def trouveFin(brinAdn):
+    # Recherche tous les codons de départ sur un brin d’ADN et renvoie un tableau contenant
+    # les positions du premier nucléotide de chacun des codons. Ainsi si TAC se trouve aux
+    # positions 3, 67 et 89 (ces trois valeurs étant les positions du T de TAC) il renverra le
+    # tableau suivant : [ 3 , 67 , 89 ] .
 
-def trouveGene(debut, fin):
-    # Prend en paramètre un tableau contenant les positions de tous les codons de départ et un
-    # autre tableau contenant les positions de tous les codons de terminaison pour un brin
-    # d’ADN et renvoie un tableau de tuples contenant la liste des gènes (début et fin) trouvés
-    # sur un brin.
-    # Ainsi, s’il y a trois gènes sur un brin, le tableau renvoyé ressemblera à :
-    # [ (debutGene1, finGene1) , (debutGene2, finGene2) ,
-    # (debutGene3, finGene3) ]
-    # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
-    # de trois nucléotides de debutGene.
+    resultat = []  # Garde les positions du premier nucléotide d'un start codon
+    resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
 
-    listeDeGenes = []  # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = []  # Garde temporairemente les positions de genes qui vont être convertis en tuple
-    stopAnterieur = 0  # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-    # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
-    # transcription.
-    geneStart = -1 # Garde la position du dernier stop codon. Initialisé à -1 pour permettre la reconaissance d'un start codon dans la position 0
-    for stopPos in fin:  # Itération sur la liste des positions de stop codons
-        for startPos in debut:
-            if startPos < stopPos and startPos > geneStart: # Selectione les positions de début entre 2 stop codons
-                print(stopPos,startPos)
-            else:
-                pass
-        geneStart = stopPos
+    for i in range(0, len(brinAdn)):
+        if (brinAdn[i:i + 3] == "ATT") or (brinAdn[i:i + 3] == "ATC") or (brinAdn[i:i + 3] == "ACT"):
+            resultat.append(i)
 
+    return resultat
 
-    return listeDeGenes
+# print("stop codons: ",trouveFin(adn))
+#startCodonPos = [38, 74, 402]
+#stop codons:
+#total [3, 9, 154, 160, 226, 249, 283, 304, 311, 343, 379, 392, 437, 460, 466, 494, 517, 556, 592, 614, 650, 673, 679, 720]
+# ATT:  [226, 283, 343, 379, 437, 494, 556, 592, 614, 650]
+# ATC:  [9, 160, 392, 466, 679, 720]
+# ACT:  [3, 154, 249, 304, 311, 460, 517, 673]
+#
+# [ (38,154), (74,154), (402,437) ]
+# print((154-38)%3)
+# print((154-74)%3)
+# print((437-402)%3)
+#
+# print(len('TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGAT'))
+# print(len('TCGACTGCGATCGACAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGATACCCAGCCAGCCAGCCAGCGACG\
+# GCCAGCCAGCCAGCCAGCGAAGCCAGCCAGCCGAGTGCCAGCCAGCCAGCCAGCGAA'))
 
 
-# fita direta trouveGene([38, 74, 402],[3, 9, 154, 160, 226, 249, 283, 304, 311, 343, 379, 392, 437, 460, 466, 494, 517, 556, 592, 614, 650, 673, 679, 720]))
-print(trouveDebut(dnaReverseComplement))
-print(trouveFin(dnaReverseComplement))
+################# FITA NEGATIVA
 
-#debut [38, 74, 402] OK verificado
-#fin [3, 9, 154, 160, 226, 249, 283, 304, 311, 343, 379, 392, 437, 460, 466, 494, 517, 556, 592, 614, 650, 673, 679, 720] OK verificado
-# os genes tem que ser [38,154], [74,154], [402,437]
 
-print(len("TCGCTGGGATGCTGGCTGGCAT"))
-print(len("TCGCTGGGATGCTGGCTGGCATACGGCTGGCTGGCTTCGCTGGCTGTCGA"))
-print(len("TCGCTGGGATGCTGGCTGGCATACGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCGCTGGCTGGCTGGCTGGCAA"))
+
+
+# Utilisé pour la construction du brin d'ADN complementaire dans la fonction "antisens"
+adnAppariement = {
+    "A": "T",
+    "T": "A",
+    "C": "G",
+    "G": "C"
+}
+
+# Utilisé pour faire la conversion d'ADN en ARN dans la fonction "transcrire"
+adnTranscriptionDictionnaire = {
+    "A": "U",
+    "T": "A",
+    "C": "G",
+    "G": "C"
+}
+
+
+## <- indique le début d'un pair fonction et son test respectif
+def antisens(brinAdn):
+    # Part de brin ADN fourni et renvoie le brin d’ADN complémentaire.
+    adnAntisens = ''
+    for i in brinAdn:
+        adnAntisens += adnAppariement[i]
+    return adnAntisens
+
+
+dnac = antisens(adn)
+
+
+def testAntisens():
+    # 1 cas géneral:
+    assert antisens("AAATTTCCCGGG") == "TTTAAAGGGCCC"
+
+
+##
+def reverseComplement(brinAdn):
+    # Inversion du brin complémentaire d'ADN pour qu'il soit affiché dans le sense 5' -> 3'
+    brinAdn = antisens(brinAdn)  # Obtention du brin complémentaire d'ADN
+
+    adnBrinReverseComplement = ''  # Variable pour garder l'output
+
+    for i in str(brinAdn[len(brinAdn)::-1]):
+        adnBrinReverseComplement += i
+
+    return adnBrinReverseComplement
+
+print(reverseComplement(adn))
+adnReverseComplement = "TCGCTGGGATGCTGGCTGGCATACGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCGCTGGCTGGCTGGCTG\
+GCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCAATCGCTGGCTGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCAAT\
+CGGCTGGCTGGCTTCGCTGGCTGTCGAACGCAGACGAGTTCGCTGGCTGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTTCG\
+CTGGCTGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGGTATCGCTGGGATGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGC\
+TGGCTGGCTGGCAATCGGCTGGCTGGCTTCGCTGGCTGTCGAAGAGTGTCGAGTTCGCTGGCTGGCTGGCTGAATATCGGCTGGCTGGCTTCGCTGGCT\
+GTCGAAGAGTGTTCGCTGGCTGGCTGGCTGAATATCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCATTCGGCTGGCTGGCTTCGCTGGCTGTCGAT\
+CGCAGTTCGCTGGCTGGCTGGCTGGCACTCGGCTGGCTGGCTTCGCTGGCTGGCTGGCTGGCCGTCGCTGGCTGGCTGGCTGGGTATCGGCTGGCTGGC\
+TTCGCTGGCTGGCTGGCTGGGTATCGGCTGGCTGGCTTCGCTGGCTGTCGATCGCAGTCGA"
+
+print(trouveDebut(adnReverseComplement))
+print(trouveFin(adnReverseComplement))
+"""
+Start:TAC
+STOP: ATT, ATC, ACT"""
+#startCodonPos = [21]
+#stop codons:
+#total [49, 78, 114, 136, 172, 234, 262, 291, 327, 349, 385, 447, 504, 539, 568, 596, 655, 691, 719]
+# ATT:
+# ATC:
+# ACT:
+
+print((49-21)%3)
