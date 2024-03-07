@@ -144,18 +144,20 @@ lettreAa = {
     "GGG": "G"
 }
 
+# Utilisé pour la construction du brin d'ADN complementaire dans la fonction "antisens"
 adnAppariement = {
     "A": "T",
     "T": "A",
     "C": "G",
-    "G": "C",
+    "G": "C"
 }
 
+# Utilisé pour faire la conversion d'ADN en ARN dans la fonction "transcrire"
 adnTranscriptionDictionnaire = {
     "A" : "U",
     "T" : "A",
     "C" : "G",
-    "G" : "C",
+    "G" : "C"
 }
 
 def antisens(brinAdn):
@@ -354,13 +356,4 @@ def testTraduire():
 
     #2 séquence avec les trois stop codons
     traduire("AUGCUUAUAUGAUAGUAA") == "Méthionine (Start)-Leucine-Isoleucine"
-
-
-
-def carre(longueur, nombre):
-    # Prend deux entiers en paramètre (taille du côté du carré et l’indice du carré à dessiner) et
-    # trace un carré à l’aide de la tortue.
-    return
-
-
 

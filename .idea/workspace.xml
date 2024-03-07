@@ -36,27 +36,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.DNAtrad.executor": "Run",
-    "Python.Devoir3.executor": "Run",
-    "Python.testedever.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/stn/Área de Trabalho"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.DNAtrad.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Devoir3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testedever.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/stn/Área de Trabalho&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$/Área de Trabalho" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DNAtrad">
+  <component name="RunManager" selected="Python.testedever">
     <configuration name="DNAtrad" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="IFT1015" />
       <option name="ENV_FILES" value="" />
@@ -126,8 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DNAtrad" />
         <item itemvalue="Python.testedever" />
+        <item itemvalue="Python.DNAtrad" />
       </list>
     </recent_temporary>
   </component>

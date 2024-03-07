@@ -1,435 +1,4 @@
-#odigo pra rodar no codeboot
-
-do desktop:
-
-
-def positionnerCursor(x, y):
-    pu()
-    fd(x)
-    lt(90)
-    fd(y)
-    rt(90)
-    pd()
-
-
-def debutDessin():
-    pu()
-    goto(0, 0)
-    pd()
-    positionnerCursor(-180, 120)
-    pd()
-    st()
-
-
-def carreAvecLettre(largeur, lettre):
-    # Dessine un carré et positionne le cursor au milieu
-    for _ in range(4):
-        fd(largeur)
-        rt(90)
-    pu()
-    rt(90)
-    fd(largeur / 2)
-    lt(90)
-    fd(largeur / 2)
-    pd()
-
-    # Dessine la lettre
-    dessinerLettre(lettre)
-
-    # Repositionne le cursor au début de la 1ere ligne
-
-
-def dessinerLettre(lettre):
-    if lettre == "A":
-        fd(5)
-        rt(65)
-        fd(5)
-        bk(15)
-        rt(50)
-        fd(15)
-        bk(5)
-        lt(115)
-        fd(4)
-
-    if lettre == "B":
-        bk(5)
-        lt(90)
-        fd(8)
-        rt(90)
-        fd(5)
-        for _ in range(180):
-            rt(1)
-            fd(4 * 3.14 / 180)
-        rt(180)
-        for _ in range(180):
-            rt(1)
-            fd(4 * 3.14 / 180)
-        fd(5)
-        rt(90)
-        fd(8)
-        rt(90)
-
-    if lettre == "C":
-        pu()
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        fd(5)
-        for _ in range(180):
-            lt(1)
-            fd(5 * 3.14 / 180)
-        fd(5)
-        ht()
-
-    if lettre == "D":
-        pu()
-        lt(90)
-        fd(5)
-        rt(90)
-        bk(5)
-        pd()
-        fd(3)
-        for _ in range(180):
-            rt(1)
-            fd(5 * 3.14 / 180)
-        fd(3)
-        rt(90)
-        fd(10)
-        rt(90)
-
-    if lettre == "E":
-        pu()
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        fd(10)
-        lt(90)
-        fd(10)
-        lt(90)
-        fd(10)
-        pu()
-        bk(10)
-        lt(90)
-        fd(5)
-        rt(90)
-        pd()
-        fd(10)
-
-    if lettre == "F":
-        pu()
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        fd(10)
-        lt(90)
-        fd(10)
-        lt(90)
-        pu()
-        fd(10)
-        bk(10)
-        lt(90)
-        fd(5)
-        rt(90)
-        pd()
-        fd(10)
-
-    if lettre == "G":
-        pu()
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        fd(5)
-        for _ in range(180):
-            lt(1)
-            fd(5 * 3.14 / 180)
-        fd(5)
-        lt(90)
-        fd(5)
-        lt(90)
-        fd(5)
-
-    if lettre == "H":
-        pu()
-        bk(2)
-        rt(90)
-        bk(5)
-        pd()
-        fd(10)
-        pu()
-        bk(5)
-        lt(90)
-        pd()
-        fd(5)
-        lt(90)
-        pu()
-        bk(5)
-        pd()
-        fd(10)
-        ht()
-
-    if lettre == "I":
-        pu()
-        lt(90)
-        fd(5)
-        rt(90)
-        bk(5)
-        pd()
-        fd(10)
-        pu()
-        bk(5)
-        rt(90)
-        pd()
-        fd(10)
-        lt(90)
-        pu()
-        bk(5)
-        pd()
-        fd(10)
-        ht()
-
-    if lettre == "J":
-        pu()
-        fd(4)
-        lt(90)
-        fd(5)
-        rt(90)
-        bk(5)
-        pd()
-        fd(8)
-        pu()
-        bk(4)
-        pd()
-        rt(90)
-        fd(10)
-        rt(90)
-        fd(3)
-        for _ in range(90):
-            rt(1)
-            fd(4 * 3.14 / 180)
-        ht()
-
-    if lettre == "K":
-        pu()
-        bk(2)
-        rt(90)
-        bk(8)
-        pd()
-        fd(14)
-        pu()
-        bk(7)
-        lt(45)
-        pd()
-        fd(8)
-        pu()
-        bk(8)
-        lt(90)
-        pd()
-        fd(7)
-
-    if lettre == "L":
-        pu()
-        bk(2)
-        rt(90)
-        bk(6)
-        pd()
-        fd(12)
-        lt(90)
-        fd(6)
-
-        ht()
-
-    if lettre == "M":
-        pu()
-        bk(4)
-        rt(90)
-        fd(6)
-        pd()
-        bk(12)
-        lt(45)
-        fd(6)
-        lt(90)
-        fd(6)
-        rt(135)
-        fd(12)
-
-        ht()
-
-    if lettre == "N":
-        pu()
-        bk(3)
-        rt(90)
-        fd(6)
-        pd()
-        bk(12)
-        lt(30)
-        fd(14)
-        lt(150)
-        fd(12)
-        ht()
-
-    if lettre == "O":
-        pu()
-        bk(5)
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        for _ in range(360):
-            lt(1)
-            fd(5 * 3.14 / 180)
-
-        ht()
-
-    if lettre == "P":
-        pu()
-        bk(3)
-        rt(90)
-        fd(7)
-        pd()
-        bk(14)
-        lt(90)
-        fd(4)
-        for _ in range(180):
-            rt(1)
-            fd(4 * 3.14 / 180)
-        fd(2)
-
-        ht()
-
-    if lettre == "Q":
-        pu()
-        bk(5)
-        lt(90)
-        fd(6)
-        lt(90)
-        bk(5)
-        pd()
-        for _ in range(180):
-            lt(1)
-            fd(5 * 3.14 / 180)
-        fd(2)
-        rt(45)
-        fd(4)
-        pu()
-        bk(4)
-        lt(45)
-        bk(2)
-        pd()
-        for _ in range(180):
-            lt(1)
-            fd(5 * 3.14 / 180)
-        ht()
-
-    if lettre == "R":
-        bk(5)
-        lt(90)
-        fd(8)
-        rt(90)
-        fd(5)
-        for _ in range(180):
-            rt(1)
-            fd(4 * 3.14 / 180)
-        rt(180)
-
-        rt(45)
-        fd(8)
-        pu()
-        bk(8)
-        lt(45)
-        bk(5)
-        pd()
-        rt(90)
-        fd(7)
-
-        ht()
-
-    if lettre == "S":
-        pu()
-        lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
-        pd()
-        fd(5)
-        for _ in range(180):
-            lt(1)
-            fd(3 * 3.14 / 180)
-
-        for _ in range(180):
-            rt(1)
-            fd(3 * 3.14 / 180)
-        fd(5)
-        ht()
-
-    if lettre == "T":
-        pu()
-        lt(90)
-        fd(5)
-        rt(90)
-        bk(5)
-        pd()
-        fd(10)
-        pu()
-        bk(5)
-        rt(90)
-        pd()
-        fd(12)
-
-        ht()
-
-    if lettre == "U":
-        pu()
-        bk(4)
-        rt(90)
-        bk(7)
-        pd()
-        fd(9)
-        for _ in range(180):
-            lt(1)
-            fd(4 * 3.14 / 180)
-
-        fd(9)
-        ht()
-
-    if lettre == "V":
-        pu()
-        bk(6)
-        rt(90)
-        bk(5)
-        pd()
-        lt(30)
-        fd(12)
-        lt(120)
-        fd(12)
-
-        ht()
-
-    if lettre == "W":
-        pu()
-        bk(5)
-        rt(90)
-        bk(6)
-        pd()
-        fd(12)
-        rt(45)
-        fd(5)
-
-        ht()
-
-
-debutDessin()
-carreAvecLettre(20, "W")
-
-________________________
+#arquivo do codeboot:
 codons_aa = {
     "UUU": "Phénylalanine",
     "UUC": "Phénylalanine",
@@ -564,7 +133,9 @@ lettreAa = {
 }
 
 
+## <- indique le début d'un pair fonction et son test respectif
 def positionner(x, y):
+    # Positionne la tortue pour démarrer le dessin de la protéine.
     pu()
     goto(0, 0)
     lt(90)
@@ -574,35 +145,430 @@ def positionner(x, y):
     pd()
 
 
-def carreLettre(largeur, lettre):
+def testPositionner():
+    # 1 Doit mettre la tortue au centre du tableau. Par limitation de codeBoot,
+    # il n'est pas possible définir un test avec la fonction assert.
+    positionner(0, 0)
+
+
+##
+def carre(longeur, nombre):
+    # Prend deux entiers en paramètre (taille du côté du carré et l’indice du carré à dessiner) et
+    # trace un carré à l’aide de la tortue.
+    pu()
+    fd(nombre * 20)
+    pd()
+
     for _ in range(4):
-        fd(largeur)
+        fd(longeur)
         rt(90)
 
     rt(90)
     pu()
-    fd(largeur / 2)
+    fd(longeur / 2)
     lt(90)
-    fd(largeur / 2)
+    fd(longeur / 2)
     pd()
 
-    dessinerLettre(lettre)
+
+def carreTest():
+    # 1 Doit dessineru un carré a partir du centre du tableau. Par limitation de codeBoot,
+    # il n'est pas possible définir un test avec la fonction assert.
+    carre(20, 0)
 
 
+##
 def dessinerLettre(lettre):
+    # Dessine une lettre correspondant à un aminoacide de la protéine
     if lettre == "A":
-        rt(45)
+        fd(5)
+        rt(65)
+        fd(5)
+        bk(15)
+        rt(50)
+        fd(15)
+        bk(5)
+        lt(115)
+        fd(4)
+
+    if lettre == "B":
+        bk(5)
+        lt(90)
+        fd(8)
+        rt(90)
+        fd(5)
+        for _ in range(180):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        rt(180)
+        for _ in range(180):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        fd(5)
+        rt(90)
+        fd(8)
+        rt(90)
+
+    if lettre == "C":
         pu()
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        fd(5)
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        fd(5)
+        ht()
+
+    if lettre == "D":
+        pu()
+        lt(90)
+        fd(5)
+        rt(90)
+        bk(5)
+        pd()
+        fd(3)
+        for _ in range(180):
+            rt(1)
+            fd(5 * 3.14 / 180)
+        fd(3)
+        rt(90)
+        fd(10)
+        rt(90)
+
+    if lettre == "E":
+        pu()
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        fd(10)
+        lt(90)
+        fd(10)
+        lt(90)
+        fd(10)
+        pu()
+        bk(10)
+        lt(90)
+        fd(5)
+        rt(90)
+        pd()
+        fd(10)
+
+    if lettre == "F":
+        pu()
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        fd(10)
+        lt(90)
+        fd(10)
+        lt(90)
+        pu()
+        fd(10)
+        bk(10)
+        lt(90)
+        fd(5)
+        rt(90)
+        pd()
+        fd(10)
+
+    if lettre == "G":
+        pu()
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        fd(5)
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        fd(5)
+        lt(90)
+        fd(5)
+        lt(90)
+        fd(5)
+        rt(180)
+
+    if lettre == "H":
+        pu()
+        bk(2)
+        rt(90)
         bk(5)
         pd()
         fd(10)
         pu()
         bk(5)
         lt(90)
+        pd()
+        fd(5)
+        lt(90)
+        pu()
         bk(5)
         pd()
         fd(10)
+        rt(90)
+
+    if lettre == "I":
+        pu()
+        lt(90)
+        fd(5)
+        rt(90)
+        bk(5)
+        pd()
+        fd(10)
+        pu()
+        bk(5)
+        rt(90)
+        pd()
+        fd(10)
+        lt(90)
+        pu()
+        bk(5)
+        pd()
+        fd(10)
+        ht()
+
+    if lettre == "J":
+        pu()
+        fd(4)
+        lt(90)
+        fd(5)
+        rt(90)
+        bk(5)
+        pd()
+        fd(8)
+        pu()
+        bk(4)
+        pd()
+        rt(90)
+        fd(10)
+        rt(90)
+        fd(3)
+        for _ in range(90):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        ht()
+
+    if lettre == "K":
+        pu()
+        bk(2)
+        rt(90)
+        bk(8)
+        pd()
+        fd(14)
+        pu()
+        bk(7)
+        lt(45)
+        pd()
+        fd(8)
+        pu()
+        bk(8)
+        lt(90)
+        pd()
+        fd(7)
+        pu()
+        bk(7)
         rt(45)
+        pd()
+
+    if lettre == "L":
+        pu()
+        bk(2)
+        rt(90)
+        bk(6)
+        pd()
+        fd(12)
+        lt(90)
+        fd(6)
+
+        ht()
+
+    if lettre == "M":
+        pu()
+        bk(4)
+        rt(90)
+        fd(6)
+        pd()
+        bk(12)
+        lt(45)
+        fd(6)
+        lt(90)
+        fd(6)
+        rt(135)
+        fd(12)
+        lt(90)
+
+    if lettre == "N":
+        pu()
+        bk(3)
+        rt(90)
+        fd(6)
+        pd()
+        bk(12)
+        lt(30)
+        fd(14)
+        lt(150)
+        fd(12)
+        rt(90)
+
+    if lettre == "O":
+        pu()
+        bk(5)
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        for _ in range(360):
+            lt(1)
+            fd(5 * 3.14 / 180)
+
+        ht()
+
+    if lettre == "P":
+        pu()
+        bk(3)
+        rt(90)
+        fd(7)
+        pd()
+        bk(14)
+        lt(90)
+        fd(4)
+        for _ in range(180):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        fd(2)
+        rt(180)
+
+    if lettre == "Q":
+        pu()
+        bk(5)
+        lt(90)
+        fd(6)
+        lt(90)
+        bk(5)
+        pd()
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        fd(2)
+        rt(45)
+        fd(4)
+        pu()
+        bk(4)
+        lt(45)
+        bk(2)
+        pd()
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        rt(180)
+
+    if lettre == "R":
+        bk(5)
+        lt(90)
+        fd(8)
+        rt(90)
+        fd(5)
+        for _ in range(180):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        rt(180)
+
+        rt(45)
+        fd(8)
+        pu()
+        bk(8)
+        lt(45)
+        bk(5)
+        pd()
+        rt(90)
+        fd(7)
+        lt(90)
+
+    if lettre == "S":
+        pu()
+        lt(90)
+        fd(5)
+        lt(90)
+        bk(5)
+        pd()
+        fd(5)
+        for _ in range(180):
+            lt(1)
+            fd(3 * 3.14 / 180)
+
+        for _ in range(180):
+            rt(1)
+            fd(3 * 3.14 / 180)
+        fd(5)
+        rt(180)
+
+    if lettre == "T":
+        pu()
+        lt(90)
+        fd(5)
+        rt(90)
+        bk(5)
+        pd()
+        fd(10)
+        pu()
+        bk(5)
+        rt(90)
+        pd()
+        fd(12)
+        lt(90)
+
+    if lettre == "U":
+        pu()
+        bk(4)
+        rt(90)
+        bk(7)
+        pd()
+        fd(9)
+        for _ in range(180):
+            lt(1)
+            fd(4 * 3.14 / 180)
+
+        fd(9)
+        ht()
+
+    if lettre == "V":
+        pu()
+        bk(6)
+        rt(90)
+        bk(5)
+        pd()
+        lt(30)
+        fd(12)
+        lt(120)
+        fd(12)
+        rt(60)
+        rt(0)
+        lt(0)
+
+    if lettre == "W":
+        pu()
+        bk(5)
+        rt(90)
+        bk(6)
+        pd()
+        fd(12)
+        lt(135)
+        fd(7)
+        rt(90)
+        fd(7)
+        lt(135)
+        fd(12)
+        rt(90)
 
     if lettre == "X":
         rt(45)
@@ -633,18 +599,6 @@ def dessinerLettre(lettre):
         fd(5)
         lt(90)
 
-    if lettre == "H":
-        rt(45)
-        pu()
-        bk(7)
-        pd()
-        lt(45)
-        fd(10)
-        lt(45)
-        bk(14)
-        rt(45)
-        fd(10)
-
     if lettre == "Z":
         rt(45)
         pu()
@@ -658,37 +612,71 @@ def dessinerLettre(lettre):
         fd(10)
 
 
-def dessinerSeq(sequence):
-    columnCounter = 0
-    lineCounter = 0
-    sequenceAAcides = ''
-    for j in range(0, len(sequence), 3):
-        sequenceAAcides += lettreAa[sequence[j:j + 3]]
-    print(sequenceAAcides)
+def testDessinerLettre():
+    # 1 Doit dessiner la lettre "A" au centre du tableau. Par limitation de codeBoot,
+    # il n'est pas possible définir un test avec la fonction assert.
+    dessinerLettre("A")
 
+
+##
+def dessinerSeq(sequence):
+    # Réçoit une séquence d'ARN et la déssine avec la tortue
+
+    columnCounter = 0  # Mettre le carré à la bonne colonne
+    lineCounter = 0  # Mettre le carré à la bonne ligne
+    sequenceAAcides = ''
+
+    # Conversion de la séquence d'ARN en séquence de lettres correspondant à acides aminés
+    for j in range(0, len(sequence), 3):
+        if sequence[j:j + 3] == "UAA" or sequence[j:j + 3] == "UAG" or sequence[
+                                                                       j:j + 3] == "UGA":  # Élimination d'affichage des stop codons
+            pass
+        else:
+            sequenceAAcides += lettreAa[sequence[j:j + 3]]
+
+    # Dessin des carrés avec lettres
     for i in sequenceAAcides:
         positionner(-180, 120)
+        if i == "*":
+            pass
+        else:
+            # décalage vers la bonne ligne
+            pu()
+            rt(90)
+            fd(20 * lineCounter)
+            lt(90)
+            pd()
 
-        # desce até a linha certa
+            # affichache du carre
+            carre(20, columnCounter)
 
-        pu()
-        rt(90)
-        fd(20 * lineCounter)
-        lt(90)
-        pd()
+            # affichage de la lettre
+            dessinerLettre(i)
 
-        # avança até a colonne
-        pu()
-        fd(columnCounter * 20)
-        pd()
-        carreLettre(20, i)
-        columnCounter += 1
+            columnCounter += 1
 
-        if columnCounter > 14:
-            columnCounter = 0
-            lineCounter += 1
+            # limitation de 15 carrés par ligne
+            if columnCounter > 14:
+                columnCounter = 0
+                lineCounter += 1
 
 
+def testDessinerSeq():
+    # 1 Doit dessiner un carré avec la lettre "M"
+    dessinerSeq("AUG")
+    sleep(3)
+
+    # 2 Doit dessiner 15 carrés avec la lettre "M", passer à la ligne suivante
+    # et dessiner 4 carrés avec la lettre "Y"
+    dessinerSeq("AUGAUGAUGAUGAUGAUGAUGAUGAUGAUGAUGAUGAUGAUGAUGUAUUAUUAUUAU")
+    sleep(3)
+
+    3  # Ne doit pas montrer les stop codons. Ne doit rien afficher
+    clear()
+    dessinerSeq("UAAUAGUGA")
+
+
+##
 def traduire(brinArn):
     # Prend en paramètre un brin d’ARN (chaine de caractères) et affiche la protéine sous
     # forme d’une chaine de caractères et la dessine à l’aide de la tortue.
@@ -709,5 +697,6 @@ def traduire(brinArn):
 
     dessinerSeq(brinArn)
 
-
-dessinerSeq("UAUUAUUAUGCCCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAUCAU")
+# traduire("UUUUUCUUAUUGCUUCUCCUACUGAUUAUCAUAAUGGUUGUCGUAGUGUCUUCCUCAUCGCCUCCCCCACCGACUACCACAACGGCUGCCGCAGCGUAUUACUAAUAGCAUCACCAACAGAAUAACAAAAAGGAUGACGAAGAGUGUUGCUGAUGGCGUCGCCGACGGAGUAGCAGAAGGGGUGGCGGAGGG")
+# st()
+# dessinerSeq("GCCUGUGACGAGUUUGGAUAU")
