@@ -1,8 +1,8 @@
 #COMEÇAR POR AQUI
 # PROXIMOS PASSOS
-# [X] VERIFICAR A FUNCAO DE ENCONTRAR GENES
 # [X] TESTAR A FÇ DE ENCONTRAR INICIO DO GENE
 # [X] TESTAR A FÇ DE ENCONTRAR FIM DO GENE
+# [] VERIFICAR A FUNCAO DE ENCONTRAR GENES
 # [] TESTAR A FUNCAO DE ENCOTRAR GENES PARA O COMPLEMENTO REVERSO USANDO O ARQUIVO TESTE DEVER
 # [] TESTAR TODAS AS FÇ
 # [] UNIR TDS AS FÇ
@@ -245,7 +245,6 @@ def trouveFin(brinAdn):
     # tableau suivant : [ 3 , 67 , 89 ] .
 
     resultat = []  # Garde les positions du premier nucléotide d'un start codon
-    resultatSpecial = []  # Garde le tableau spécial avec TAC en position 3, 67, 89
 
     for i in range(0, len(brinAdn)):
         if (brinAdn[i:i + 3] == "ATT") or (brinAdn[i:i + 3] == "ATC") or (brinAdn[i:i + 3] == "ACT"):
@@ -278,10 +277,11 @@ def trouveGene(debut, fin):
     # de trois nucléotides de debutGene.
 
     listeDeGenes = [] # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = [] # Garde temporairemente les positions de genes qui vont être convertis en tuple
+    genesTemp = [] # Garde temporairemente les positions des codons qui vont être convertis en tuple
     stopAnterieur = 0 # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-                      # rencontré un stop codon. Il faut donc rencontrer un nouvel codon "TAC" pour commencer une nouvelle
+                      # rencontré un stop codon. Pour trouver le prochain gène il est donc nécéssaire rencontrer un nouvel codon "TAC" pour commencer une nouvelle
                       # transcription.
+    stopFlag = False # Signale q'une tuple valide a été trouvé. Le prochain gène a un start codon situé après le stop codon courant
 
     for stopPos in fin:
         for startPos in debut:
@@ -292,13 +292,21 @@ def trouveGene(debut, fin):
                         genesTemp.append(startPos)
                         genesTemp.append(stopPos)
 
-                        # Conversion en tuple
+                        # Conversion en tuple et addition au tableau final
                         listeDeGenes.append(tuple(genesTemp))
 
-                        # # Réinitialisation du tableau pour une nouvelle conversion en tuples
+                        # Réinitialisation du tableau pour une nouvelle conversion en tuples
                         genesTemp = []
                         print(listeDeGenes)
-        stopAnterieur = stopPos # Permettre que la recherche du prochain start codon soit faite après le dernier stop codon
+
+                        # Activation du flag
+                        stopFlag = True
+
+        if startPos > stopPos and stopFlag == True: # Tous les start codons valides pour ce stop codon ont été enregistrés
+
+            stopAnterieur = stopPos # Permettre que la recherche du prochain start codon soit faite après le dernier stop codon
+
+            stopFlag = False # Réinitialiation du flag
 
     return listeDeGenes
 
