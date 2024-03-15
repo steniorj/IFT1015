@@ -175,6 +175,7 @@ def antisens(brinAdn):
         adnAntisens += adnAppariement[i]
     return adnAntisens
 
+
 def testAntisens():
     # 1 cas géneral:
     assert antisens("AAATTTCCCGGG") == "TTTAAAGGGCCC"
@@ -228,6 +229,7 @@ def trouveDebut(brinAdn):
     else:  # Output des tableaux ordinaires
         return resultat
 
+
 def testTrouveDebut():
     # 1 cas général
     assert trouveDebut("-TAC--TAC---") == [1, 6]
@@ -252,6 +254,7 @@ def trouveFin(brinAdn):
 
     return resultat
 
+
 def testTrouveFin():
     # 1 cas général pour le codon ATT:
     assert trouveFin("-ATT----") == [1]
@@ -275,18 +278,18 @@ def trouveGene(debut, fin):
     # FinGene doit être supérieur à debutGene et finGene doit être situé à un multiple
     # de trois nucléotides de debutGene.
 
-    listeDeGenes = [] # Garde les tuples avec les positions de début et fin d'un gène
-    genesTemp = [] # Garde temporairemente les positions des codons qui vont être convertis en tuple
-    stopAnterieur = 0 # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
-                      # rencontré un stop codon. Pour trouver le prochain gène il est donc nécéssaire rencontrer un nouvel codon "TAC" pour commencer une nouvelle
-                      # transcription.
-    stopFlag = False # Signale q'une tuple valide a été trouvé. Le prochain gène a un start codon situé après le stop codon courant
+    listeDeGenes = []  # Garde les tuples avec les positions de début et fin d'un gène
+    genesTemp = []  # Garde temporairemente les positions des codons qui vont être convertis en tuple
+    stopAnterieur = 0  # Garde la position du stop codon anterieur. l'ARN polymerase arrête la transcription après avoir
+    # rencontré un stop codon. Pour trouver le prochain gène il est donc nécéssaire rencontrer un nouvel codon "TAC" pour commencer une nouvelle
+    # transcription.
+    stopFlag = False  # Signale q'une tuple valide a été trouvé. Le prochain gène a un start codon situé après le stop codon courant
 
     for stopPos in fin:
         for startPos in debut:
             if startPos < stopPos:
-                if stopAnterieur < startPos: # Vérif. si le start codon analysé est après le dernier stop codon
-                    if (stopPos - startPos) % 3 == 0: # Vérif. si les positions de fin et début sont multiples de 3
+                if stopAnterieur < startPos:  # Vérif. si le start codon analysé est après le dernier stop codon
+                    if (stopPos - startPos) % 3 == 0:  # Vérif. si les positions de fin et début sont multiples de 3
 
                         genesTemp.append(startPos)
                         genesTemp.append(stopPos)
@@ -300,13 +303,14 @@ def trouveGene(debut, fin):
                         # Activation du flag
                         stopFlag = True
 
-        if startPos > stopPos and stopFlag == True: # Tous les start codons valides pour ce stop codon ont été enregistrés
+        if startPos > stopPos and stopFlag == True:  # Tous les start codons valides pour ce stop codon ont été enregistrés
 
-            stopAnterieur = stopPos # Permettre que la recherche du prochain start codon soit faite après le dernier stop codon
+            stopAnterieur = stopPos  # Permettre que la recherche du prochain start codon soit faite après le dernier stop codon
 
-            stopFlag = False # Réinitialiation du flag
+            stopFlag = False  # Réinitialiation du flag
 
     return listeDeGenes
+
 
 def testTrouveGene():
     # 1 un gène avec un start codon et un stop codon:
@@ -320,17 +324,18 @@ def testTrouveGene():
 
 
 ##
-def genesEnChaine(debut,fin,sequence):
+def genesEnChaine(debut, fin, sequence):
     # Prend en paramètre les positions de début et fin d'un gene et une séquence d'adn,
     # en renvoyant la chaîne de caractères correspondant
 
-    sousChaineEnADN = sequence[debut:fin+3]
+    sousChaineEnADN = sequence[debut:fin + 3]
 
     return sousChaineEnADN
 
+
 def testGenesEnChaine():
-    #1 cas général:
-    assert genesEnChaine(0,5,"AAA--TTT----") == "AAA--TTT"
+    # 1 cas général:
+    assert genesEnChaine(0, 5, "AAA--TTT----") == "AAA--TTT"
 
 
 ##
@@ -342,6 +347,7 @@ def transcrire(brinAdn):
     for i in brinAdn:
         arnTranscrit += adnTranscriptionDictionnaire[i]
     return arnTranscrit
+
 
 def testTranscrire():
     # 1 cas géneral:
@@ -363,13 +369,13 @@ def positionner(x, y):
     fd(x)
     pd()
 
+
 def testPositionner():
     # 1 Doit mettre la tortue au centre du tableau. Par limitation de codeBoot,
     # il n'est pas possible définir un test avec la fonction assert.
     positionner(0, 0)
 
 
-##
 ##
 def carre(longeur, nombre):
     # Prend deux entiers en paramètre (taille du côté du carré et l’indice du carré à dessiner) et
@@ -411,7 +417,19 @@ def dessinerLettre(lettre):
         fd(15)
         bk(5)
         lt(115)
-        fd(4)
+        fd(5)
+
+        pu()
+        bk(5)
+        rt(115)
+        fd(5)
+        bk(15)
+        lt(50)
+        fd(15)
+        bk(5)
+        lt(65)
+        bk(5)
+        pd()
 
     if lettre == "B":
         bk(5)
@@ -444,6 +462,18 @@ def dessinerLettre(lettre):
             fd(5 * 3.14 / 180)
         fd(5)
 
+        pu()
+        bk(5)
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        bk(5)
+        fd(5)
+        rt(90)
+        bk(5)
+        rt(90)
+        pd()
+
     if lettre == "D":
         pu()
         lt(90)
@@ -452,13 +482,27 @@ def dessinerLettre(lettre):
         bk(5)
         pd()
         fd(3)
+
         for _ in range(180):
             rt(1)
             fd(5 * 3.14 / 180)
         fd(3)
         rt(90)
         fd(10)
+
+        pu()
+        bk(10)
+        lt(90)
+        bk(3)
+        for _ in range(180):
+            rt(1)
+            fd(5 * 3.14 / 180)
+        bk(3)
+        fd(5)
+        lt(90)
+        bk(5)
         rt(90)
+        pd()
 
     if lettre == "E":
         pu()
@@ -479,6 +523,23 @@ def dessinerLettre(lettre):
         rt(90)
         pd()
         fd(10)
+
+        pu()
+        bk(10)
+        lt(90)
+        bk(5)
+        rt(90)
+        fd(10)
+        bk(10)
+        rt(90)
+        bk(10)
+        rt(90)
+        bk(10)
+        fd(5)
+        rt(90)
+        bk(5)
+        rt(90)
+        pd()
 
     if lettre == "F":
         pu()
@@ -519,7 +580,22 @@ def dessinerLettre(lettre):
         fd(5)
         lt(90)
         fd(5)
-        rt(180)
+
+        pu()
+        bk(5)
+        rt(90)
+        bk(5)
+        rt(90)
+        bk(5)
+        for _ in range(180):
+            lt(1)
+            fd(5 * 3.14 / 180)
+        bk(5)
+        fd(5)
+        rt(90)
+        bk(5)
+        rt(90)
+        pd()
 
     if lettre == "H":
         pu()
@@ -539,6 +615,13 @@ def dessinerLettre(lettre):
         pd()
         fd(10)
         rt(90)
+
+        pu()
+        lt(90)
+        bk(5)
+        rt(90)
+        bk(3)
+        pd()
 
     if lettre == "I":
         pu()
@@ -566,26 +649,6 @@ def dessinerLettre(lettre):
         lt(90)
         pd()
 
-    if lettre == "J":
-        pu()
-        fd(4)
-        lt(90)
-        fd(5)
-        rt(90)
-        bk(5)
-        pd()
-        fd(8)
-        pu()
-        bk(4)
-        pd()
-        rt(90)
-        fd(10)
-        rt(90)
-        fd(3)
-        for _ in range(90):
-            rt(1)
-            fd(4 * 3.14 / 180)
-
     if lettre == "K":
         pu()
         bk(2)
@@ -603,9 +666,22 @@ def dessinerLettre(lettre):
         lt(90)
         pd()
         fd(7)
+
         pu()
         bk(7)
         rt(45)
+        lt(45)
+        fd(7)
+        bk(7)
+        rt(90)
+        fd(8)
+        bk(8)
+        rt(45)
+        fd(7)
+        bk(14)
+        fd(8)
+        lt(90)
+        fd(2)
         pd()
 
     if lettre == "L":
@@ -667,19 +743,17 @@ def dessinerLettre(lettre):
         fd(14)
         lt(150)
         fd(12)
-        rt(90)
 
-    if lettre == "O":
         pu()
-        bk(5)
+        bk(12)
+        rt(150)
+        bk(14)
+        rt(30)
+        fd(12)
+        bk(6)
         lt(90)
-        fd(5)
-        lt(90)
-        bk(5)
+        fd(3)
         pd()
-        for _ in range(360):
-            lt(1)
-            fd(5 * 3.14 / 180)
 
     if lettre == "P":
         pu()
@@ -731,7 +805,28 @@ def dessinerLettre(lettre):
         for _ in range(180):
             lt(1)
             fd(5 * 3.14 / 180)
-        rt(180)
+
+        pu()
+        for _ in range(180):
+            rt(1)
+            bk(5 * 3.14 / 180)
+
+        fd(2)
+        rt(45)
+        fd(4)
+        bk(4)
+        lt(45)
+        bk(2)
+        for _ in range(180):
+            rt(1)
+            bk(5 * 3.14 / 180)
+
+        fd(5)
+        rt(90)
+        bk(6)
+        rt(90)
+        fd(5)
+        pd()
 
     if lettre == "R":
         bk(5)
@@ -753,6 +848,26 @@ def dessinerLettre(lettre):
         rt(90)
         fd(7)
         lt(90)
+
+        pu()
+        rt(90)
+        bk(7)
+        lt(90)
+        fd(5)
+        rt(45)
+        fd(8)
+        bk(8)
+        lt(45)
+        lt(180)
+        for _ in range(180):
+            rt(1)
+            fd(4 * 3.14 / 180)
+        bk(5)
+        lt(90)
+        bk(8)
+        rt(90)
+        fd(5)
+        pd()
 
     if lettre == "S":
         pu()
@@ -808,19 +923,6 @@ def dessinerLettre(lettre):
         lt(90)
         pd()
 
-    if lettre == "U":
-        pu()
-        bk(4)
-        rt(90)
-        bk(7)
-        pd()
-        fd(9)
-        for _ in range(180):
-            lt(1)
-            fd(4 * 3.14 / 180)
-
-        fd(9)
-
     if lettre == "V":
         pu()
         bk(6)
@@ -857,19 +959,19 @@ def dessinerLettre(lettre):
         fd(12)
         rt(90)
 
-    if lettre == "X":
-        rt(45)
         pu()
-        bk(5)
-        pd()
-        fd(10)
-        pu()
-        bk(5)
         lt(90)
-        bk(5)
+        bk(12)
+        rt(135)
+        bk(7)
+        lt(90)
+        bk(7)
+        rt(135)
+        bk(12)
+        fd(6)
+        lt(90)
+        fd(5)
         pd()
-        fd(10)
-        rt(45)
 
     if lettre == "Y":
         rt(45)
@@ -884,7 +986,11 @@ def dessinerLettre(lettre):
         pd()
         rt(135)
         fd(5)
+
+        pu()
+        bk(5)
         lt(90)
+        pd()
 
     if lettre == "Z":
         rt(45)
@@ -899,6 +1005,12 @@ def dessinerLettre(lettre):
         fd(10)
 
     # Mettre la tortue dans la position originale
+    pu()
+    bk(10)
+    rt(90)
+    bk(10)
+    lt(90)
+    pd()
 
 
 def testDessinerLettre():
@@ -926,6 +1038,7 @@ def dessinerSeq(sequence):
         if i == "*":  # Ignorer les stop codons
             pass
         else:
+
             # Affichache du carre
             carre(20, columnCounter)
 
@@ -934,7 +1047,6 @@ def dessinerSeq(sequence):
 
             columnCounter = 1  # Passer à la prochaine colonne
             columnLimit += 1
-
             # limitation de 15 carrés par ligne
             if columnLimit > 14:
                 columnCounter = 0
@@ -948,6 +1060,7 @@ def dessinerSeq(sequence):
                 fd(20 * lineCounter)
                 lt(90)
                 pd()
+
 
 def testDessinerSeq():
     # 1 Doit dessiner un carré avec la lettre "M"
@@ -974,19 +1087,20 @@ def traduire(brinArn):
     # Affichage de la proteine sous forme de chaine de caractères
     for i in range(0, len(brinArn), 3):
 
-        if codons_aa[brinArn[i:i + 3]] == "Stop": # Empêcher l'affichage des stop codons
+        if codons_aa[brinArn[i:i + 3]] == "Stop":  # Empêcher l'affichage des stop codons
             pass
         else:
             proteinString += codons_aa[brinArn[i:i + 3]] + '-'
 
-    print(proteinString.rstrip('-'))
+    print(proteinString.rstrip('-'), '\n')
 
     # Affichage de la proteine sous forme de dessin
     dessinerSeq(brinArn)
 
-    #### AFFICHAGE DU TRAVAIL ####
+## Définition des variables ####
 
-adnComplementReverse = reverseComplement(adn)
+#Brin positif
+
 
 debutBrinPositif = trouveDebut(adn)
 
@@ -994,15 +1108,30 @@ finBrinPositif = trouveFin(adn)
 
 genesBrinPositif = trouveGene(debutBrinPositif, finBrinPositif)
 
-gene1AdnBrinPositif = genesEnChaine(genesBrinPositif[0][0],genesBrinPositif[0][1],adn)
-gene2AdnBrinPositif = genesEnChaine(genesBrinPositif[1][0],genesBrinPositif[1][1],adn)
-gene3AdnBrinPositif = genesEnChaine(genesBrinPositif[2][0],genesBrinPositif[2][1],adn)
+gene1AdnBrinPositif = genesEnChaine(genesBrinPositif[0][0], genesBrinPositif[0][1], adn)
+gene2AdnBrinPositif = genesEnChaine(genesBrinPositif[1][0], genesBrinPositif[1][1], adn)
+gene3AdnBrinPositif = genesEnChaine(genesBrinPositif[2][0], genesBrinPositif[2][1], adn)
 
 gene1ArnBrinPositif = transcrire(gene1AdnBrinPositif)
 gene2ArnBrinPositif = transcrire(gene2AdnBrinPositif)
 gene3ArnBrinPositif = transcrire(gene3AdnBrinPositif)
 
-positionner(-180, 120) # Positionner la tortue au coin supérieur gauche
+#Brin négatif
+
+adnComplementReverse = reverseComplement(adn)
+
+finBrinNegatif = trouveFin(adnComplementReverse)
+
+#### AFFICHAGE DU TRAVAIL ####
+positionner(-180, 120)  # Positionner la tortue au coin supérieur gauche
 traduire(gene1ArnBrinPositif)
+rt(90)
+fd(40)
+lt(90)
 traduire(gene2ArnBrinPositif)
+rt(90)
+fd(40)
+lt(90)
 traduire(gene3ArnBrinPositif)
+
+
