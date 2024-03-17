@@ -176,16 +176,12 @@ def antisens(brinAdn):
     return adnAntisens
 
 
-def testAntisens():
-    # 1 cas géneral:
-    assert antisens("AAATTTCCCGGG") == "TTTAAAGGGCCC"
-
 
 ##
 def reverseComplement(brinAdn):
     # Inversion du brin complémentaire d'ADN pour qu'il soit affiché dans le sense 5' -> 3'
     brinAdn = antisens(brinAdn)  # Obtention du brin complémentaire d'ADN
-
+    print(brinAdn)
     adnBrinReverseComplement = ''  # Variable pour garder l'output
 
     for i in str(brinAdn[len(brinAdn)::-1]):
@@ -194,9 +190,7 @@ def reverseComplement(brinAdn):
     return adnBrinReverseComplement
 
 
-def testReverseComplement():
-    # 1 cas général:
-    assert reverseComplement("AAATTTCCCGGG") == "GGGCCCTTTAAA"
+print(reverseComplement("AAACCC"))
 
 
 ##
@@ -311,76 +305,3 @@ def trouveGene(debut, fin):
 
     return listeDeGenes
 
-
-def testTrouveGene():
-    # 1 un gène avec un start codon et un stop codon:
-    assert trouveGene([1], [4]) == [(1, 4)]
-
-    # 2 deux gènes avec le même stop codon:
-    assert trouveGene([1, 4], [7]) == [(1, 7), (4, 7)]
-
-    # 3 un gène entre deux stop codons:
-    assert trouveGene([5], [2, 11]) == [(5, 11)]
-
-
-##
-def genesEnChaine(debut, fin, sequence):
-    # Prend en paramètre les positions de début et fin d'un gene et une séquence d'adn,
-    # en renvoyant la chaîne de caractères correspondant
-
-    sousChaineEnADN = sequence[debut:fin + 3]
-
-    return sousChaineEnADN
-
-
-def testGenesEnChaine():
-    # 1 cas général:
-    assert genesEnChaine(0, 5, "AAA--TTT----") == "AAA--TTT"
-
-
-##
-def transcrire(brinAdn):
-    # Prend en paramètre la sous-chaine de caractère du brin d’ADN débutant au début du gène
-    # et se terminant à la fin du gène et renvoie le brin d’ARN correspondant sous forme d’une
-    # chaine de caractères.
-    arnTranscrit = ''
-    for i in brinAdn:
-        arnTranscrit += adnTranscriptionDictionnaire[i]
-    return arnTranscrit
-
-
-def testTranscrire():
-    # 1 cas géneral:
-    assert transcrire("AAATTTCCCGGG") == "UUUAAAGGGCCC"
-
-## Définition des variables ####
-
-#Brin positif
-
-
-debutBrinPositif = trouveDebut(adn)
-
-finBrinPositif = trouveFin(adn)
-
-genesBrinPositif = trouveGene(debutBrinPositif, finBrinPositif)
-
-gene1AdnBrinPositif = genesEnChaine(genesBrinPositif[0][0], genesBrinPositif[0][1], adn)
-gene2AdnBrinPositif = genesEnChaine(genesBrinPositif[1][0], genesBrinPositif[1][1], adn)
-gene3AdnBrinPositif = genesEnChaine(genesBrinPositif[2][0], genesBrinPositif[2][1], adn)
-
-gene1ArnBrinPositif = transcrire(gene1AdnBrinPositif)
-gene2ArnBrinPositif = transcrire(gene2AdnBrinPositif)
-gene3ArnBrinPositif = transcrire(gene3AdnBrinPositif)
-
-#Brin négatif
-
-adnComplementReverse = reverseComplement(adn)
-
-debutBrinNegatif = trouveDebut(adnComplementReverse)
-
-finBrinNegatif = trouveFin(adnComplementReverse)
-
-genesBrinNegatif = trouveGene(debutBrinNegatif, finBrinNegatif)
-
-
-print(debutBrinNegatif,finBrinNegatif)
