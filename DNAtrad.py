@@ -4,6 +4,8 @@
 # [X] TESTAR A FÇ DE ENCONTRAR FIM DO GENE
 # [X] VERIFICAR A FUNCAO DE ENCONTRAR GENES
 # [] TESTAR A FUNCAO DE ENCOTRAR GENES PARA O COMPLEMENTO REVERSO USANDO O ARQUIVO TESTE DEVER
+# funcao de encontrar genes aind anao esta boa para o complemento reverso
+# [] ESCREVER UMA FC PARA CRIAR UM ESPAÇO APOS TERMINAR DE DESENHAR UMA PROTEINA
 # [] TESTAR TODAS AS FÇ
 # [] UNIR TDS AS FÇ
 # [] RODAR TODAS AS FÇ COM DNA + E -
@@ -1123,12 +1125,14 @@ adnComplementReverse = reverseComplement(adn)
 finBrinNegatif = trouveFin(adnComplementReverse)
 
 #### AFFICHAGE DU TRAVAIL ####
-clear(250,350) # Augmenter la fenêtre
+clear(370,450) # Augmenter la fenêtre
 positionner(-180, 120)  # Positionner la tortue au coin supérieur gauche
 traduire(gene1ArnBrinPositif)
+pu()
 rt(90)
 fd(40)
 lt(90)
+pd()
 traduire(gene2ArnBrinPositif)
 rt(90)
 fd(40)
