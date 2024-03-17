@@ -1123,6 +1123,7 @@ adnComplementReverse = reverseComplement(adn)
 finBrinNegatif = trouveFin(adnComplementReverse)
 
 #### AFFICHAGE DU TRAVAIL ####
+clear(250,350) # Augmenter la fenêtre
 positionner(-180, 120)  # Positionner la tortue au coin supérieur gauche
 traduire(gene1ArnBrinPositif)
 rt(90)
