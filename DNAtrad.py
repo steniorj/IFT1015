@@ -1145,4 +1145,3 @@ traduire(gene1ArnBrinPositif)
 traduire(gene2ArnBrinPositif)
 traduire(gene3ArnBrinPositif)
 traduire(gene1ArnBrinNegatif)
-
