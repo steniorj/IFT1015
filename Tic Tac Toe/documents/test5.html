@@ -7,27 +7,36 @@
    <title>Test5</title>
 
    <style>
-      a { color: violet; font-family: Courier; }
-      p { color: orange; font-size: 20px; }
-      .important { color: red; }
-      #conclusion { font-size: 8px; }
+       a { color: violet; background-color: lime; font-family: Courier; }
+       p { color: orange; font-size: 30px; }
+       .important { color: red; }
+       #conclusion { font-size: 8px; }
+       .btt {color:red;}
    </style>
-
+    <script>
+        nom = "**pas de nom**"
+        function clic() { alert("Bonjour "+nom+"!") }
+        function init() { nom = prompt("Votre nom?") }
+    </script>
  </head>
 
- <body>
+ <body onload="init()">
 
    <p id="intro"> Ceci est l'introduction. </p>
 
    <p> Deuxième paragraphe. </p>
 
-   <p style="color: green;"> Troisième paragraphe. </p>
+   <p onclick="alert('clique')"; style="color: green;">Troisième paragraphe. </p>
 
    <p class="important"> La fin est proche! </p>
 
    <p id="conclusion"> Dernier paragraphe. </p>
 
    <a href="http://google.com">Chercher</a>
+
+   <button class="btt">teste</button>
+    <button onclick="clic()">Bonjour</button>
+
 
  </body>
 
