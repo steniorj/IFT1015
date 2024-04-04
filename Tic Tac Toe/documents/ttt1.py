@@ -2,7 +2,7 @@ def init():
     global tour
     tour = 'x'
     for i in range(9):
-        case(i).innerHTML = ''
+        case(i).innerHTML = '1'
 
 def clic(index):
     global tour
