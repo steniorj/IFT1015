@@ -17,9 +17,13 @@
         border: 5px solid red ;
         }
         </style>
-        <button onclick="init()">Nouvelle partie</button> <br>
+        <button onclick="init()">Nouvelle partie</button>
+        <button id="undo" onclick="undo()" ">Undo</button>
+        <button id="redo" onclick="redo()" ">Redo</button> <br>
         <p id="vencedor"></p> <br><br>
-
+        <p id="grille"></p>
+        <p id="coups"></p>
+        <p id="occupees"></p>
         <table>
 
             <tr>
@@ -37,6 +41,7 @@
                 <td id="case6" onclick="clic(6)"></td>
                 <td id="case7" onclick="clic(7)"></td>
                 <td id="case8" onclick="clic(8)"></td>
+
             </tr>
         </table>
 
