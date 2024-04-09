@@ -1,9 +1,11 @@
-mois = ['jan','feb','mar','apr','may','jun',
-        'jul','aug','sep','oct','nov','dec']
+def table(contenu): return '<table>' + contenu + '</table>'
+def tr(contenu): return '<tr>' + contenu + '</tr>'
+def td(contenu): return '<td id="case' + str(contenu) + '" onclick="clic(' + str(contenu) + ')">'+ str(contenu) +'</td>'
 
-def ol(contenu): return '<ol>' + contenu + '</ol'
+def genererGrille():
+    grille = ''
+    for i in range(0,10):
+        grille += td(i)
+    return grille
 
-def li(contenu): return '<li>' + contenu + '</li>'
-
-print(list(map(li,mois)))
-print(ol(''.join(list(map(li,mois)))))
+print(genererGrille())
