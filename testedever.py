@@ -5,7 +5,13 @@ def td(contenu): return '<td id="case' + str(contenu) + '" onclick="clic(' + str
 def genererGrille():
     grille = ''
     for i in range(0,10):
-        grille += td(i)
-    return grille
+        temp = ''
+        for j in range(0,10):
+                index  = i*10+j
+                temp += td(index)
+        grille += tr(temp)
+
+    return table(grille)
 
 print(genererGrille())
+
