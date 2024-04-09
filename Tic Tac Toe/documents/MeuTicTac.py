@@ -1,3 +1,4 @@
+
 def init():
     global tour, grille, occupees, coups
 
@@ -29,7 +30,8 @@ def clic(index):
         gagnant = victoire()
 
         #prints
-        gri = document.querySelector('#grille')
+        print(grille)
+        gri = document.querySelector('#' + 'grille')
         gri.innerHTML = 'var grille: ' + str(grille.copy())
 
         coupvar = document.querySelector('#coups')
