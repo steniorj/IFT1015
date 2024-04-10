@@ -1,12 +1,55 @@
 # Vous devez remplacer le contenu de ce fichier par votre propre code
 # tel qu'indiqué dans la description du TP2.  Le code ici correspond
 # à l'exemple donné dans la description.
-#proximo passo: usar random pra gerar as moedas e incorporá-las na var grille com o valor 'P'
+
+"""
+[] colocar os sous na lista da grille
+[] criar contador de moedas na grille
+[] criar contador de moedas descobertas
+[] criar contador de jogadas
+[] criar checagem de vitoria
+
+caso jogada numa casa com moeda:
+[] ajustar função clic para mostrar a moeda somente se a casa na grille contiver uma moeda
+[] modificar contador de moedas achadas
+[] checar condicoes de vitoria
+
+caso jogada numa casa sem moeda:
+[] ajustar função clic para mostrar numeros de moedas adjacentes
+[] ajustar fç clic para diminuir numero de jogadas
+[] checar derrota
+    em caso de derrota:
+    []mostrar mensagem
+    [] reiniciar jogo
+    []verificar pdf se há algo mais a fazer
+
+em caso de vitoria:
+[] seguir o que é descrito no pdf
+
+
+
+"""
 import random
 import functools
-def teste():
-    for i in range(100):
-        case(i).innerHTML = '2'
+
+
+def genererSous():
+    # Retourne une liste de 15 à 20 éléments contenant un nombre entre 0 et 99, correspondant
+    # aux positions où les sous seront placés dans le tableau
+
+    quantiteDeSous = random.randint(15, 20)  # Entre 15 et 20 cases auront un sous
+    positionsDesSous = []
+    nombreAleatoire = random.randint(0, 99)  # Position où le sus sera mis
+
+    for i in range(quantiteDeSous):
+
+        # Éviter le même nombre plus d'une fois dans la liste et pièces en cases voisines
+        while nombreAleatoire in positionsDesSous or (nombreAleatoire - 11) in positionsDesSous or (nombreAleatoire - 10) in positionsDesSous or (nombreAleatoire - 9) in positionsDesSous or (nombreAleatoire - 1) in positionsDesSous or (nombreAleatoire + 1) in positionsDesSous or (nombreAleatoire + 9) in positionsDesSous or (nombreAleatoire + 10) in positionsDesSous or (nombreAleatoire + 11) in positionsDesSous:
+            nombreAleatoire = random.randint(0, 99)
+
+        positionsDesSous.append(nombreAleatoire)
+
+    return positionsDesSous
 
 def init():
     global grille
@@ -17,7 +60,7 @@ def init():
       <p hidden="hidden" class="hcentered2"> Vous avez gagné</p>
       
       <div id="jeu" class="centered">   
-      """ +  genererGrille() + """ 
+      """ + genererGrille() + """ 
       </div>
       <img src="symboles/coste.svg" width="40" height="40">
       """)
@@ -29,7 +72,7 @@ def init():
     gri.innerHTML = 'var grille: ' + str(grille.copy())
 
     for i in range(100): # Nettoyage du grille
-        case(i).innerHTML = ''
+        case(i).innerHTML = str(i)
 
 
 def table(contenu): return '<table>' + contenu + '</table>'
