@@ -4,31 +4,35 @@
 
 """
 
-[] fazer generersous() rodar sem bugar - só pode usar random.random()
-[] colocar os sous na lista da grille
-[] criar contador de moedas na grille
-[] criar contador de moedas descobertas
-[] criar contador de jogadas
-[] criar checagem de vitoria
+[x] fazer generersous() rodar sem bugar - só pode usar random.random()
+[x] colocar os sous na lista da grille
+[x] criar contador de moedas no código e mostrar na página
+[x] criar contador de erros
+[x] mostrar contador de erros na pagina
+[x] criar contador de moedas descobertas
+[x] criar checagem de vitoria
 
 caso jogada numa casa com moeda:
-[] ajustar função clic para mostrar a moeda somente se a casa na grille contiver uma moeda
-[] modificar contador de moedas achadas
-[] checar condicoes de vitoria
+[x] ajustar função clic para mostrar a moeda somente se a casa na grille contiver uma moeda
+[x] modificar contador de moedas achadas
+[x] checar condicoes de vitoria
 
 caso jogada numa casa sem moeda:
-[] ajustar função clic para mostrar numeros de moedas adjacentes
-[] ajustar fç clic para diminuir numero de jogadas
-[] checar derrota
+[x] ajustar fç clic para diminuir numero de jogadas
+[x] checar derrota
     em caso de derrota:
-    []mostrar mensagem
-    [] reiniciar jogo
-    []verificar pdf se há algo mais a fazer
+    [x]mostrar mensagem
+    [x] reiniciar jogo
+    [x] sleep 10
+    [x] init()
 
-em caso de vitoria:
-[] seguir o que é descrito no pdf
-
-
+[] ajustar inicializacao para mostrar numeros de moedas adjacentes para cada casa
+    [] criar check para casas da esquerda
+    [] criar check para casas da direita
+    [] criar check para casas de cima
+    [] criar check para casas de baixo
+    [] criar check para casas dos cantos
+    [] criar check para casas do centro
 
 """
 import random
@@ -37,42 +41,68 @@ import functools
 
 def genererSous():
     # Retourne une liste de 15 à 20 éléments contenant un nombre entre 0 et 99, correspondant
-    # aux positions où les sous seront placés dans le tableau
+    # aux positions où les sous seront plaés dans le tableau
 
-    quantiteDeSous = random.random()  # Entre 15 et 20 cases auront un sous
+    global quantiteDeSous
+
+    quantiteDeSous = int(15 + random.random() * 6)  # Entre 15 et 20 cases auront un sous
     positionsDesSous = []
+    nombreAleatoire = int(random.random() * 1000 // 10)  # Position où le sous sera mis
 
+    for i in range(quantiteDeSous):
 
+        # Éviter le même nombre plus d'une fois dans la liste et pièces en cases voisines
+        while ((nombreAleatoire in positionsDesSous) or
+               ((nombreAleatoire - 11) in positionsDesSous) or
+               ((nombreAleatoire - 10) in positionsDesSous) or
+               ((nombreAleatoire - 9) in positionsDesSous) or
+               ((nombreAleatoire - 1) in positionsDesSous) or
+               ((nombreAleatoire + 1) in positionsDesSous) or
+               ((nombreAleatoire + 9) in positionsDesSous) or
+               ((nombreAleatoire + 10) in positionsDesSous) or
+               ((nombreAleatoire + 11) in positionsDesSous)):
+            nombreAleatoire = int(random.random() * 1000 // 10)
 
+        positionsDesSous.append(nombreAleatoire)
 
-    return [0,0,1]
+    return positionsDesSous
 
-def alterarGrille():
-    return [0,0,0]
 def grilleAvecSous(tab):
+    # Réçoit la grille vide et substitue 15-20 cases par 'P', qui symbolize une pièce.
 
-    pos = genererSous()
-    for i in pos:
-        tab[i] = 9
+    sous = genererSous()
+    tableau = tab
+    for i in sous:
+        tableau[i] = 'P'
+    return tableau
 
-    return tab
 def init():
-    global grille
+    global grille, quantiteDeSous, nombreDerreurs, monnaiesTrouves, sousCaches, erreurs
+
     main = document.querySelector("#main")
 
     main.innerHTML = ("""
       <button class="hcentered" id="boutonNouvellePartie" onclick="init()">Nouvelle partie</button>
-      <p hidden="hidden" class="hcentered2"> Vous avez gagné</p>
-      
+      <p id="header" class="hcentered2" style="font-size: 24px;"> <b> Jouer! </b> </p>
+      <p id="nombreDerreurs" class="gauche"></p>
+      <p id="sousCaches" class= "droite"></p>
       <div id="jeu" class="centered">   
-      """ + genererGrille() + """ 
+      """ + genererCarte() + """ 
       </div>
-      <img src="symboles/coste.svg" width="40" height="40">
+      <img src="symboles/coste.svg" width="40" height="40" class="droite" hidden>
       """)
 
-    grille = genererSous()
+    grille = [0]*100
+    grille = grilleAvecSous(grille)
 
+    nombreDerreurs = 0
+    erreurs = document.querySelector('#nombreDerreurs')
+    erreurs.innerHTML = 'Erreurs: ' + str(nombreDerreurs)
 
+    monnaiesTrouves = 0
+
+    sousCaches = document.querySelector('#sousCaches')
+    sousCaches.innerHTML = 'Nombre des sous:' + str(quantiteDeSous - monnaiesTrouves)
 
     #affichage
     gri = document.querySelector('#' + 'grille')
@@ -86,7 +116,7 @@ def table(contenu): return '<table>' + contenu + '</table>'
 def tr(contenu): return '<tr>' + contenu + '</tr>'
 def td(contenu): return '<td id="case' + str(contenu) + '" onclick="clic(' + str(contenu) + ')">'+ str(contenu) +'</td>'
 
-def genererGrille():
+def genererCarte():
     grille = ''
     for i in range(0,10):
         temp = ''
@@ -96,29 +126,37 @@ def genererGrille():
         grille += tr(temp)
 
     return table(grille)
-    # nombrePieces = math.floor(random.random()*5) + 15
-    #
-    # returnValue = ''
-    # for i in range(0,10):
-    #     temp = ''
-    #     for j in range(0,10):
-    #         index = i*10 + j
-    #
-    #         temp = td("<div><p>P" + str(index) + "</p></div>")
-    #     returnValue += tr(temp)
-    #
-    # return table(returnValue) + str(nombrePieces)
-
-    #grille = ''
-    #grille = <td id="case0" onclick="clic(0)"></td>
-    #return grille
 
 def clic(index):
-    global grille
-    case(index).innerHTML = '<img src="symboles/coste.svg" width="20" height="20">'
+    global grille, monnaiesTrouves, sousCaches, quantiteDeSous, msgVictoire, nombreDerreurs, erreurs
 
+    # Si la case a une monnaie caché
+    if grille[index] == "P":
+        case(index).innerHTML = '<img src="symboles/coste.svg" width="20" height="20">'
+        monnaiesTrouves += 1
+        sousCaches.innerHTML = 'Nombre des sous:' + str(quantiteDeSous - monnaiesTrouves)
+
+        # Victoire
+        if monnaiesTrouves == quantiteDeSous:
+            msgVictoire = document.querySelector('#header')
+            msgVictoire.innerHTML = 'Vous avez gagné!'
+            sleep(10)
+            init()
+
+    # Si la case n'a pas une monnaie
     if grille[index] == 0:
         grille[index] = 1
+        nombreDerreurs +=1
+        erreurs = document.querySelector('#nombreDerreurs')
+        erreurs.innerHTML = 'Erreurs: ' + str(nombreDerreurs)
+
+        # Défaite
+        if nombreDerreurs > 3:
+            msgDefaite = document.querySelector('#header')
+            msgDefaite.innerHTML = 'Vous avez perdu!'
+            sleep(10)
+            init()
+
     #affichage
     gri = document.querySelector('#' + 'grille')
     gri.innerHTML = 'var grille: ' + str(grille.copy())

@@ -4,14 +4,14 @@
 
 """
 import random
-
+import math
 def genererSous():
     # Retourne une liste de 15 à 20 éléments contenant un nombre entre 0 et 99, correspondant
     # aux positions où les sous seront plaés dans le tableau
 
-    quantiteDeSous = random.randint(15,20) # Entre 15 et 20 cases auront un sous
+    quantiteDeSous = int(15 + random.random() * 6) # Entre 15 et 20 cases auront un sous
     positionsDesSous = []
-    nombreAleatoire = random.randint(0,99) # Position où le sus sera mis
+    nombreAleatoire = int(random.random()*1000//10) # Position où le sus sera mis
 
     for i in range(quantiteDeSous):
 
@@ -31,22 +31,5 @@ def genererSous():
 
     return positionsDesSous
 
-genererSous()
+print(len(genererSous()))
 
-listazero = [0]*100
-
-pos = genererSous()
-
-print(listazero)
-print(pos)
-for i in pos:
-    listazero[i] = "9"
-print(listazero)
-
-def grilleAvecSous(tab):
-
-    pos = genererSous()
-    for i in pos:
-        grille[i] = 9
-
-    return grille

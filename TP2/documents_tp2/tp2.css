@@ -10,7 +10,7 @@
 }
 .centered {
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -29,3 +29,27 @@
   transform: translate(-50%, -50%);
 }
 
+.droite {
+  position: absolute;
+  top: 12%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+}
+
+.gauche{
+  position: absolute;
+  top: 12%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.variavel{
+  position: absolute;
+  top: 28%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+
+p {
+  color: red;
+}
