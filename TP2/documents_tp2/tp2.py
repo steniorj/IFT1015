@@ -3,6 +3,8 @@
 # à l'exemple donné dans la description.
 
 """
+
+[] fazer generersous() rodar sem bugar - só pode usar random.random()
 [] colocar os sous na lista da grille
 [] criar contador de moedas na grille
 [] criar contador de moedas descobertas
@@ -37,20 +39,23 @@ def genererSous():
     # Retourne une liste de 15 à 20 éléments contenant un nombre entre 0 et 99, correspondant
     # aux positions où les sous seront placés dans le tableau
 
-    quantiteDeSous = random.randint(15, 20)  # Entre 15 et 20 cases auront un sous
+    quantiteDeSous = random.random()  # Entre 15 et 20 cases auront un sous
     positionsDesSous = []
-    nombreAleatoire = random.randint(0, 99)  # Position où le sus sera mis
 
-    for i in range(quantiteDeSous):
 
-        # Éviter le même nombre plus d'une fois dans la liste et pièces en cases voisines
-        while nombreAleatoire in positionsDesSous or (nombreAleatoire - 11) in positionsDesSous or (nombreAleatoire - 10) in positionsDesSous or (nombreAleatoire - 9) in positionsDesSous or (nombreAleatoire - 1) in positionsDesSous or (nombreAleatoire + 1) in positionsDesSous or (nombreAleatoire + 9) in positionsDesSous or (nombreAleatoire + 10) in positionsDesSous or (nombreAleatoire + 11) in positionsDesSous:
-            nombreAleatoire = random.randint(0, 99)
 
-        positionsDesSous.append(nombreAleatoire)
 
-    return positionsDesSous
+    return [0,0,1]
 
+def alterarGrille():
+    return [0,0,0]
+def grilleAvecSous(tab):
+
+    pos = genererSous()
+    for i in pos:
+        tab[i] = 9
+
+    return tab
 def init():
     global grille
     main = document.querySelector("#main")
@@ -65,7 +70,9 @@ def init():
       <img src="symboles/coste.svg" width="40" height="40">
       """)
 
-    grille = [0] * 100
+    grille = genererSous()
+
+
 
     #affichage
     gri = document.querySelector('#' + 'grille')

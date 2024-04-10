@@ -33,16 +33,20 @@ def genererSous():
 
 genererSous()
 
-#
-# lista = [23, 49, 23]
-#
-# for i in lista:
-#    counter = 0
-#    for j in lista:
-#        print(i, j)
-#        if i == j:
-#            counter+=1
-#            print(counter)
-#
-#
-#
+listazero = [0]*100
+
+pos = genererSous()
+
+print(listazero)
+print(pos)
+for i in pos:
+    listazero[i] = "9"
+print(listazero)
+
+def grilleAvecSous(tab):
+
+    pos = genererSous()
+    for i in pos:
+        grille[i] = 9
+
+    return grille
