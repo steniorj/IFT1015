@@ -26,13 +26,13 @@ caso jogada numa casa sem moeda:
     [x] sleep 10
     [x] init()
 
-[] ajustar inicializacao para mostrar numeros de moedas adjacentes para cada casa
-    [] criar check para casas da esquerda
-    [] criar check para casas da direita
-    [] criar check para casas de cima
-    [] criar check para casas de baixo
-    [] criar check para casas dos cantos
-    [] criar check para casas do centro
+[x] ajustar inicializacao para mostrar numeros de moedas adjacentes para cada casa
+    [x] criar check para casas da esquerda
+    [x] criar check para casas da direita
+    [x] criar check para casas de cima
+    [x] criar check para casas de baixo
+    [x] criar check para casas dos cantos
+    [x] criar check para casas do centro
 
 """
 import random
@@ -77,7 +77,7 @@ def grilleAvecSous(tab):
     return tableau
 
 def init():
-    global grille, quantiteDeSous, nombreDerreurs, monnaiesTrouves, sousCaches, erreurs
+    global grille, quantiteDeSous, nombreDerreurs, monnaiesTrouves, sousCaches, erreurs, piecesAdjacents
 
     main = document.querySelector("#main")
 
@@ -104,17 +104,85 @@ def init():
     sousCaches = document.querySelector('#sousCaches')
     sousCaches.innerHTML = 'Nombre des sous:' + str(quantiteDeSous - monnaiesTrouves)
 
+    piecesAdjacents = 0
+
     #affichage
     gri = document.querySelector('#' + 'grille')
     gri.innerHTML = 'var grille: ' + str(grille.copy())
 
-    for i in range(100): # Nettoyage du grille
+    for i in range(100): # Rédemarrage du grille
         case(i).innerHTML = str(i)
 
+        if (i in [10,20,30,40,50,60,70,80]) and (grille[i] != "P"):
+            for j in [-10,-9,1,10,11]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [19,29,39,49,59,69,79,89]) and (grille[i] != "P"):
+            for j in [-10,-11,-1,9,10]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [1,2,3,4,5,6,7,8]) and (grille[i] != "P"):
+            for j in [-1,9,10,11,1]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [91,92,93,94,95,96,97,98]) and (grille[i] != "P"):
+            for j in [-1,-11,-10,-9,1]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [0]) and (grille[i] != "P"):
+            for j in [1,10,11]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [9]) and (grille[i] != "P"):
+            for j in [-1,9,10]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [90]) and (grille[i] != "P"):
+            for j in [-10,-9,1]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        if (i in [99]) and (grille[i] != "P"):
+            for j in [-1,-10,-11]:
+                if grille[i+j] == 'P':
+                    piecesAdjacents += 1
+            case(i).innerHTML = str(piecesAdjacents)
+            piecesAdjacents = 0
+
+        for k in range(1,9):
+            if k*10 <= i <= k*10+8 and (grille[i] != "P"):
+                for j in [-11,-10,-9,-1,1,9,10,11]:
+                    if grille[i+j] == 'P':
+                        piecesAdjacents += 1
+                case(i).innerHTML = str(piecesAdjacents)
+                piecesAdjacents = 0
+
+        if (grille[i] == 'P') or case(i).innerHTML == str(0):
+            case(i).innerHTML = ''
 
 def table(contenu): return '<table>' + contenu + '</table>'
 def tr(contenu): return '<tr>' + contenu + '</tr>'
-def td(contenu): return '<td id="case' + str(contenu) + '" onclick="clic(' + str(contenu) + ')">'+ str(contenu) +'</td>'
+def td(contenu): return '<td id="case' + str(contenu) + '" onclick="clic(' + str(contenu) + ')"></td>'
 
 def genererCarte():
     grille = ''
@@ -166,4 +234,3 @@ def element(id):
 
 def case(index):
     return element('case' + str(index))
-

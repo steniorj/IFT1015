@@ -24,21 +24,21 @@
 
 .hcentered2 { /*centrer horizontalement */
   position: absolute;
-  top: 8%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .droite {
   position: absolute;
-  top: 12%;
+  top: 14%;
   left: 65%;
   transform: translate(-50%, -50%);
 }
 
 .gauche{
   position: absolute;
-  top: 12%;
+  top: 14%;
   left: 35%;
   transform: translate(-50%, -50%);
 }
