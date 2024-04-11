@@ -9,4 +9,3 @@ for rangee in range(1,9):
             p = str(piecesAdjacents)
             piecesAdjacents = 0
 
-print(p)
