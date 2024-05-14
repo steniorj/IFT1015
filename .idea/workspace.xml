@@ -32,30 +32,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.DNAtrad.executor": "Run",
-    "Python.Demo6.executor": "Run",
-    "Python.Devoir3.executor": "Run",
-    "Python.ExoNote6.executor": "Run",
-    "Python.MeuTicTac.executor": "Run",
-    "Python.exercice1.executor": "Run",
-    "Python.exercice2a.executor": "Run",
-    "Python.testedever.executor": "Run",
-    "Python.tp2.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/stn/Documents/GitHub/IFT1015/Tic Tac Toe/documents",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.DNAtrad.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Demo6.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Devoir3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExoNote6.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MeuTicTac.executor&quot;: &quot;Run&quot;,
+    &quot;Python.exercice1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.exercice2a.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testedever.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tp2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/stn/Documents/GitHub/IFT1015/Tic Tac Toe/documents&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tic Tac Toe/documents" />

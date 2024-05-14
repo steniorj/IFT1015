@@ -60,6 +60,7 @@ def init():
       """ + genererCarte() + """ 
       </div>
       """)
+    stenni
 
     grille = [0]*100 # Création du grille vide
     grille = grilleAvecSous(grille) # Emplacement des monnaies
